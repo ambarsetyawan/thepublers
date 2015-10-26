@@ -8,12 +8,12 @@ use Illuminate\Routing\Controller;
 
 class PostController extends Controller {
 
-    public function index(Request $request) {
-        $news_title = $request->input('news_title');
-        if ($request->has('news_title')) {
-            echo $news_title;
+    public function index(Request $request)
+    {
+        if($request->has('news_title', 'news_preview', 'news_content')){
+            echo true;
         }
-
+        
         return view('post');
     }
 
@@ -23,8 +23,8 @@ class PostController extends Controller {
     }
 
 
-    public function store(Request $request) {
-        $news_title = $request->input('news_title');
+    public function store() {
+
     }
 
 
