@@ -3,7 +3,7 @@
         <input type="hidden" name="_token" value="{{ csrf_token() }}">
         <ul class="cols block">
             <li>
-                <label for="news_cover">Название статьи<br>
+                <label for="news_cover">Обложка<br>
                     <input type="file" name="news_cover">
                 </label>
             </li>

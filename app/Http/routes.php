@@ -5,3 +5,4 @@ Route::get('/', function () {
 });
 
 Route::resource('post', 'PostController');
+Route::resource('signup', 'SignupController');
