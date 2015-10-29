@@ -2,86 +2,28 @@
 
 namespace App\Http\Controllers;
 
+use Hash;
 use Illuminate\Http\Request;
-use App\Http\Requests;
+use App\UserModel;
 use App\Http\Requests\SignupRequest;
-use App\Http\Controllers\Controller;
+use App\Http\Requests;
 
-class SignupController extends Controller
-{
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
 
+class SignupController extends Controller {
+
+    public function index() {
+        return view('signup');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(SignupRequest $request)
-    {
-
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+    public function store(SignupRequest $request) {
+        $model = new UserModel();
+        $model->user_firstname = $request->user_firstname;
+        $model->user_lastname = $request->user_lastname;
+        $model->user_email = $request->user_email;
+        $model->user_password = Hash::make($request->user_password);
+        $model->user_cover_address = $request->user_cover_address;
+        $model->user_date_created = date('Y-m-d H:i:s');
+        $model->save();
     }
 }
