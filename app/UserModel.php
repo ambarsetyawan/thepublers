@@ -8,6 +8,5 @@ class UserModel extends Model
 {
     protected $table = 'user';
     protected $dateFormat = 'U';
-    public $timestamps = false;
-
+    protected $primaryKey = 'user_id';
 }

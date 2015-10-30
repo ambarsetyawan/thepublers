@@ -3,25 +3,27 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class User extends Migration
-{
+class User extends Migration{
 
     public function up()
     {
         Schema::create('user', function (Blueprint $table) {
             $table->increments('user_id');
-            $table->string('user_firstname');
-            $table->string('user_lastname');
-            $table->string('user_email');
-            $table->string('user_password');
+            $table->string('user_firstname', 32);
+            $table->string('user_lastname', 32);
+            $table->string('user_email', 32)->unique();
+            $table->string('user_password', 32);
             $table->string('user_cover_address');
-            $table->integer('user_status');
-            $table->dateTime('user_date_created');
+            $table->integer('user_status')->default(0);
+            $table->timestamps();
         });
     }
 
     public function down()
     {
-       Schema::drop('user');
+        if (Schema::hasTable('user')) {
+            Schema::drop('user');
+        }
+
     }
 }

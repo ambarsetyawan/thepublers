@@ -23,7 +23,6 @@ class SignupController extends Controller {
         $model->user_email = $request->user_email;
         $model->user_password = Hash::make($request->user_password);
         $model->user_cover_address = $request->user_cover_address;
-        $model->user_date_created = date('Y-m-d H:i:s');
         $model->save();
     }
 }

@@ -16,7 +16,7 @@ class SignupRequest extends Request {
             'user_lastname' => 'required|min:3|max:32',
             'user_email' => 'required|email|unique:user,user_email',
             'user_password' => 'required|min:3|max:32',
-            'user_cover' => 'required|image|mimes:jpeg,jpg,png,gif',
+            'user_cover_address' => 'required|image|mimes:jpeg,jpg,png,gif',
         ];
     }
 }
