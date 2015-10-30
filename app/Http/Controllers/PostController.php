@@ -2,21 +2,24 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PostRequest;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use App\PostModel;
 
 class PostController extends Controller
 {
     public function index() {
-
+        return view('post');
     }
 
     public function create() {
         //
     }
 
-    public function store(Request $request) {
-        //
+    public function store(PostRequest $request) {
+        $model = new PostModel();
+
     }
 
     public function show($id) {

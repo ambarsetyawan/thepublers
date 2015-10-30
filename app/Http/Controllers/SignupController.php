@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Hash;
-use Illuminate\Http\Request;
 use App\UserModel;
 use App\Http\Requests\SignupRequest;
 use App\Http\Requests;
@@ -14,7 +13,6 @@ class SignupController extends Controller {
     public function index() {
         return view('signup');
     }
-
 
     public function store(SignupRequest $request) {
         $model = new UserModel();

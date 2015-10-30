@@ -1,0 +1,752 @@
+Index: resources/views/post.blade.php
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- resources/views/post.blade.php	(revision f70ba54713bc490652bceb9b5e2193671443bfab)
++++ resources/views/post.blade.php	(revision )
+@@ -1,9 +1,38 @@
+ <div class="wrapper">
+-    <form enctype="multipart/form-data" method="GET" action="">
++    <form enctype="multipart/form-data" method="POST" action="">
++        <input type="hidden" name="_method" value="PUT">
++        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+         <ul class="cols block">
+             <li>
+-                <label for="news_title">Название статьи
++                <label>Автор
++                    <input type="text" name="news_author">
++                </label>
++            </li>
++            <li>
++                <label>Название статьи
+                     <input type="text" name="news_title" maxlength="64">
++                </label>
++            </li>
++            <li>
++                <label>Загрузить обложку 560x560
++                    <input type="file" name="news_cover">
++                </label>
++            </li>
++            <li>
++                <label>Выбрать категорию
++                    <select name='select_news_category'>
++                        <option value=""></option>
++                    </select>
++                </label>
++            </li>
++            <li>
++                <label>Анонс новости<br>
++                    <textarea name="news_preview" rows="5" maxlength="128"></textarea>
++                </label>
++            </li>
++            <li>
++                <label>Текстовая информация<br>
++                    <textarea name="news_content" rows="10"></textarea>
+                 </label>
+             </li>
+             <li>
+\ No newline at end of file
+Index: .idea/vcs.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/vcs.xml	(revision f70ba54713bc490652bceb9b5e2193671443bfab)
++++ .idea/vcs.xml	(revision )
+@@ -2,5 +2,6 @@
+ <project version="4">
+   <component name="VcsDirectoryMappings">
+     <mapping directory="" vcs="" />
++    <mapping directory="$PROJECT_DIR$" vcs="Git" />
+   </component>
+ </project>
+\ No newline at end of file
+Index: readme.md
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>windows-1251
+===================================================================
+--- readme.md	(revision f70ba54713bc490652bceb9b5e2193671443bfab)
++++ readme.md	(revision )
+@@ -1,27 +1,1 @@
+-## Laravel PHP Framework
+-
+-[![Build Status](https://travis-ci.org/laravel/framework.svg)](https://travis-ci.org/laravel/framework)
+-[![Total Downloads](https://poser.pugx.org/laravel/framework/d/total.svg)](https://packagist.org/packages/laravel/framework)
+-[![Latest Stable Version](https://poser.pugx.org/laravel/framework/v/stable.svg)](https://packagist.org/packages/laravel/framework)
+-[![Latest Unstable Version](https://poser.pugx.org/laravel/framework/v/unstable.svg)](https://packagist.org/packages/laravel/framework)
+-[![License](https://poser.pugx.org/laravel/framework/license.svg)](https://packagist.org/packages/laravel/framework)
+-
+-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as authentication, routing, sessions, queueing, and caching.
+-
+-Laravel is accessible, yet powerful, providing powerful tools needed for large, robust applications. A superb inversion of control container, expressive migration system, and tightly integrated unit testing support give you the tools you need to build any application with which you are tasked.
+-
+-## Official Documentation
+-
+-Documentation for the framework can be found on the [Laravel website](http://laravel.com/docs).
+-
+-## Contributing
+-
+-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](http://laravel.com/docs/contributions).
+-
+-## Security Vulnerabilities
+-
+-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
+-
+-### License
+-
+-The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT)
++Process...
+\ No newline at end of file
+Index: app/Http/Controllers/PostController.php
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/Http/Controllers/PostController.php	(revision f70ba54713bc490652bceb9b5e2193671443bfab)
++++ app/Http/Controllers/PostController.php	(revision )
+@@ -9,11 +9,7 @@
+ class PostController extends Controller {
+ 
+     public function index(Request $request) {
+-        $news_title = $request->input('news_title');
+-        if ($request->has('news_title')) {
+-            echo $news_title;
+-        }
+-
++        echo $request->input('news_author');
+         return view('post');
+     }
+ 
+@@ -24,7 +20,7 @@
+ 
+ 
+     public function store(Request $request) {
+-        $news_title = $request->input('news_title');
++
+     }
+ 
+ 
+Index: .idea/thepublers.iml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>windows-1251
+===================================================================
+--- .idea/thepublers.iml	(revision f70ba54713bc490652bceb9b5e2193671443bfab)
++++ .idea/thepublers.iml	(revision )
+@@ -21,6 +21,7 @@
+       <excludeFolder url="file://$MODULE_DIR$/vendor/jakub-onderka/php-console-highlighter" />
+       <excludeFolder url="file://$MODULE_DIR$/vendor/jeremeamia/SuperClosure" />
+       <excludeFolder url="file://$MODULE_DIR$/vendor/laravel/framework" />
++      <excludeFolder url="file://$MODULE_DIR$/vendor/laravelcollective/html" />
+       <excludeFolder url="file://$MODULE_DIR$/vendor/league/flysystem" />
+       <excludeFolder url="file://$MODULE_DIR$/vendor/mockery/mockery" />
+       <excludeFolder url="file://$MODULE_DIR$/vendor/monolog/monolog" />
+@@ -99,6 +100,7 @@
+           <root url="file://$MODULE_DIR$/vendor/jakub-onderka/php-console-highlighter" />
+           <root url="file://$MODULE_DIR$/vendor/jeremeamia/SuperClosure" />
+           <root url="file://$MODULE_DIR$/vendor/laravel/framework" />
++          <root url="file://$MODULE_DIR$/vendor/laravelcollective/html" />
+           <root url="file://$MODULE_DIR$/vendor/league/flysystem" />
+           <root url="file://$MODULE_DIR$/vendor/mockery/mockery" />
+           <root url="file://$MODULE_DIR$/vendor/monolog/monolog" />
+@@ -163,6 +165,7 @@
+           <root url="file://$MODULE_DIR$/vendor/jakub-onderka/php-console-highlighter" />
+           <root url="file://$MODULE_DIR$/vendor/jeremeamia/SuperClosure" />
+           <root url="file://$MODULE_DIR$/vendor/laravel/framework" />
++          <root url="file://$MODULE_DIR$/vendor/laravelcollective/html" />
+           <root url="file://$MODULE_DIR$/vendor/league/flysystem" />
+           <root url="file://$MODULE_DIR$/vendor/mockery/mockery" />
+           <root url="file://$MODULE_DIR$/vendor/monolog/monolog" />
+\ No newline at end of file
+Index: config/app.php
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>windows-1251
+===================================================================
+--- config/app.php	(revision f70ba54713bc490652bceb9b5e2193671443bfab)
++++ config/app.php	(revision )
+@@ -146,6 +146,7 @@
+         App\Providers\RouteServiceProvider::class,
+ 
+         Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
++        Collective\Html\HtmlServiceProvider::class,
+ 
+     ],
+ 
+@@ -195,6 +196,9 @@
+         'URL'       => Illuminate\Support\Facades\URL::class,
+         'Validator' => Illuminate\Support\Facades\Validator::class,
+         'View'      => Illuminate\Support\Facades\View::class,
++
++        'Form' => Collective\Html\FormFacade::class,
++        'Html' => Collective\Html\HtmlFacade::class,
+ 
+     ],
+ 
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/workspace.xml	(revision f70ba54713bc490652bceb9b5e2193671443bfab)
++++ .idea/workspace.xml	(revision )
+@@ -1,7 +1,17 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <project version="4">
+   <component name="ChangeListManager">
+-    <list default="true" id="5ef6e148-84d9-445e-b706-3ec434a36888" name="Default" comment="" />
++    <list default="true" id="5ef6e148-84d9-445e-b706-3ec434a36888" name="Default" comment="">
++      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/PostController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/PostController.php" />
++      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/app.php" afterPath="$PROJECT_DIR$/config/app.php" />
++      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/composer.json" afterPath="$PROJECT_DIR$/composer.json" />
++      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/composer.lock" afterPath="$PROJECT_DIR$/composer.lock" />
++      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/post.blade.php" afterPath="$PROJECT_DIR$/resources/views/post.blade.php" />
++      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/readme.md" afterPath="$PROJECT_DIR$/readme.md" />
++      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/thepublers.iml" afterPath="$PROJECT_DIR$/.idea/thepublers.iml" />
++      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
++      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
++    </list>
+     <ignored path="thepublers.iws" />
+     <ignored path=".idea/workspace.xml" />
+     <ignored path=".idea/dataSources.local.xml" />
+@@ -27,21 +37,11 @@
+   </component>
+   <component name="FileEditorManager">
+     <leaf>
+-      <file leaf-file-name="routes.php" pinned="false" current-in-tab="false">
+-        <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
+-          <provider selected="true" editor-type-id="text-editor">
+-            <state vertical-scroll-proportion="-3.392857">
+-              <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+-              <folding />
+-            </state>
+-          </provider>
+-        </entry>
+-      </file>
+       <file leaf-file-name="PostController.php" pinned="false" current-in-tab="true">
+         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/PostController.php">
+           <provider selected="true" editor-type-id="text-editor">
+-            <state vertical-scroll-proportion="0.32022473">
+-              <caret line="12" column="42" selection-start-line="12" selection-start-column="42" selection-end-line="12" selection-end-column="42" />
++            <state vertical-scroll-proportion="0.31198686">
++              <caret line="10" column="12" selection-start-line="10" selection-start-column="12" selection-end-line="10" selection-end-column="12" />
+               <folding>
+                 <element signature="e#40#68#0#PHP" expanded="true" />
+               </folding>
+@@ -49,16 +49,6 @@
+           </provider>
+         </entry>
+       </file>
+-      <file leaf-file-name="post.blade.php" pinned="false" current-in-tab="false">
+-        <entry file="file://$PROJECT_DIR$/resources/views/post.blade.php">
+-          <provider selected="true" editor-type-id="text-editor">
+-            <state vertical-scroll-proportion="-1.3571428">
+-              <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+-              <folding />
+-            </state>
+-          </provider>
+-        </entry>
+-      </file>
+     </leaf>
+   </component>
+   <component name="FrameworkCommandLineHistory">
+@@ -80,20 +70,22 @@
+       <command text="rtisan make:middleware LoginMiddleware" />
+       <command text="artisan make:middleware LoginMiddleware" />
+       <command text="artisan make:controller RegistrationController" />
++      <command text="artisan serve" />
++      <command text="artisan ide-helper:generate" />
++      <command text="artisan clear-compiled" />
++      <command text="artisan ide-helper:generate" />
++      <command text="artisan serve" />
+     </commandsHistory>
+   </component>
+   <component name="Git.Settings">
+-    <option name="RECENT_GIT_ROOT_PATH" value="$USER_HOME$/Documents/GitHub/thepublers" />
++    <option name="UPDATE_CHANGES_POLICY" value="SHELVE" />
++    <option name="ROOT_SYNC" value="DONT_SYNC" />
++    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+   </component>
+-  <component name="HighlightingSettingsPerFile">
+-    <setting file="mock:///Dummy.txt" root0="SKIP_INSPECTION" />
+-  </component>
+   <component name="IdeDocumentHistory">
+     <option name="CHANGED_PATHS">
+       <list>
+         <option value="$PROJECT_DIR$/.gitignore" />
+-        <option value="$PROJECT_DIR$/readme.md" />
+-        <option value="$PROJECT_DIR$/config/app.php" />
+         <option value="$PROJECT_DIR$/resources/views/signup/signup.blade.php" />
+         <option value="$PROJECT_DIR$/resources/views/login/login.blade.php" />
+         <option value="$PROJECT_DIR$/app/Http/Controllers/SignupController.php" />
+@@ -109,8 +101,10 @@
+         <option value="$PROJECT_DIR$/config/database.php" />
+         <option value="$PROJECT_DIR$/app/Http/Controllers/RegistrationController.php" />
+         <option value="$PROJECT_DIR$/app/Http/Controllers/PhotoController.php" />
+-        <option value="$PROJECT_DIR$/app/Http/routes.php" />
++        <option value="$PROJECT_DIR$/readme.md" />
++        <option value="$PROJECT_DIR$/config/app.php" />
+         <option value="$PROJECT_DIR$/resources/views/post.blade.php" />
++        <option value="$PROJECT_DIR$/app/Http/routes.php" />
+         <option value="$PROJECT_DIR$/app/Http/Controllers/PostController.php" />
+       </list>
+     </option>
+@@ -194,12 +188,14 @@
+       <path value="$PROJECT_DIR$/vendor/doctrine/cache" />
+       <path value="$PROJECT_DIR$/vendor/barryvdh/laravel-ide-helper" />
+       <path value="$PROJECT_DIR$/vendor/symfony/class-loader" />
++      <path value="$PROJECT_DIR$/vendor/laravelcollective/html" />
+     </include_path>
+   </component>
+   <component name="ProjectFrameBounds">
+-    <option name="x" value="-7" />
+-    <option name="width" value="1612" />
+-    <option name="height" value="877" />
++    <option name="x" value="115" />
++    <option name="y" value="190" />
++    <option name="width" value="1496" />
++    <option name="height" value="774" />
+   </component>
+   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+     <OptionsSetting value="true" id="Add" />
+@@ -252,38 +248,6 @@
+               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+             </PATH_ELEMENT>
+             <PATH_ELEMENT>
+-              <option name="myItemId" value="resources" />
+-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+-            </PATH_ELEMENT>
+-            <PATH_ELEMENT>
+-              <option name="myItemId" value="views" />
+-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+-            </PATH_ELEMENT>
+-          </PATH>
+-          <PATH>
+-            <PATH_ELEMENT>
+-              <option name="myItemId" value="thepublers" />
+-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+-            </PATH_ELEMENT>
+-            <PATH_ELEMENT>
+-              <option name="myItemId" value="thepublers" />
+-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+-            </PATH_ELEMENT>
+-            <PATH_ELEMENT>
+-              <option name="myItemId" value="resources" />
+-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+-            </PATH_ELEMENT>
+-          </PATH>
+-          <PATH>
+-            <PATH_ELEMENT>
+-              <option name="myItemId" value="thepublers" />
+-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+-            </PATH_ELEMENT>
+-            <PATH_ELEMENT>
+-              <option name="myItemId" value="thepublers" />
+-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+-            </PATH_ELEMENT>
+-            <PATH_ELEMENT>
+               <option name="myItemId" value="app" />
+               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+             </PATH_ELEMENT>
+@@ -330,15 +294,15 @@
+           </PATH>
+         </subPane>
+       </pane>
+-      <pane id="Scope" />
+       <pane id="Scratches" />
++      <pane id="Scope" />
+     </panes>
+   </component>
+   <component name="PropertiesComponent">
+-    <property name="settings.editor.selected.configurable" value="Laravel.SettingsForm" />
++    <property name="settings.editor.selected.configurable" value="reference.webide.settings.project.settings.php.zend.framework.tool" />
+     <property name="settings.editor.splitter.proportion" value="0.2" />
+     <property name="WebServerToolWindowFactoryState" value="false" />
+-    <property name="last_opened_file_path" value="$USER_HOME$/Documents/GitHub/thepublers" />
++    <property name="last_opened_file_path" value="C:/Program Files/Git/bin/git.exe" />
+     <property name="FullScreen" value="false" />
+   </component>
+   <component name="RecentsManager">
+@@ -390,16 +354,15 @@
+     <servers />
+   </component>
+   <component name="ToolWindowManager">
+-    <frame x="-7" y="0" width="1612" height="877" extended-state="0" />
+-    <editor active="true" />
++    <frame x="115" y="190" width="1496" height="774" extended-state="0" />
++    <editor active="false" />
+     <layout>
+       <window_info id="Gulp" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24937344" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
++      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.19932432" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32932332" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+-      <window_info id="Command Line Tools Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.328125" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+@@ -408,6 +371,7 @@
+       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
++      <window_info id="Command Line Tools Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32781956" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+@@ -436,14 +400,66 @@
+     <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
+       <provider selected="true" editor-type-id="text-editor">
+         <state vertical-scroll-proportion="0.0">
++          <caret line="6" column="42" selection-start-line="6" selection-start-column="42" selection-end-line="6" selection-end-column="42" />
++          <folding />
++        </state>
++      </provider>
++    </entry>
++    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/PostController.php">
++      <provider selected="true" editor-type-id="text-editor">
++        <state vertical-scroll-proportion="0.0">
++          <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
++          <folding>
++            <element signature="e#40#68#0#PHP" expanded="true" />
++          </folding>
++        </state>
++      </provider>
++    </entry>
++    <entry file="file://$PROJECT_DIR$/resources/views/post.blade.php">
++      <provider selected="true" editor-type-id="text-editor">
++        <state vertical-scroll-proportion="0.0">
+           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+           <folding />
+         </state>
+       </provider>
+     </entry>
++    <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
++      <provider selected="true" editor-type-id="text-editor">
++        <state vertical-scroll-proportion="0.0">
++          <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
++          <folding />
++        </state>
++      </provider>
++    </entry>
+     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/PostController.php">
+       <provider selected="true" editor-type-id="text-editor">
+         <state vertical-scroll-proportion="0.0">
++          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
++          <folding>
++            <element signature="e#40#68#0#PHP" expanded="true" />
++          </folding>
++        </state>
++      </provider>
++    </entry>
++    <entry file="file://$PROJECT_DIR$/resources/views/post.blade.php">
++      <provider selected="true" editor-type-id="text-editor">
++        <state vertical-scroll-proportion="0.0">
++          <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
++          <folding />
++        </state>
++      </provider>
++    </entry>
++    <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
++      <provider selected="true" editor-type-id="text-editor">
++        <state vertical-scroll-proportion="0.0">
++          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
++          <folding />
++        </state>
++      </provider>
++    </entry>
++    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/PostController.php">
++      <provider selected="true" editor-type-id="text-editor">
++        <state vertical-scroll-proportion="0.0">
+           <caret line="8" column="28" selection-start-line="8" selection-start-column="28" selection-end-line="8" selection-end-column="28" />
+           <folding>
+             <element signature="e#40#68#0#PHP" expanded="true" />
+@@ -488,77 +504,110 @@
+         </state>
+       </provider>
+     </entry>
+-    <entry file="file://$PROJECT_DIR$/readme.md">
++    <entry file="file://$PROJECT_DIR$/resources/views/welcome.blade.php">
+       <provider selected="true" editor-type-id="text-editor">
++        <state vertical-scroll-proportion="0.6551724">
++          <caret line="21" column="4" selection-start-line="21" selection-start-column="4" selection-end-line="21" selection-end-column="4" />
++        </state>
++      </provider>
++    </entry>
++    <entry file="file://$PROJECT_DIR$/config/view.php">
++      <provider selected="true" editor-type-id="text-editor">
+         <state vertical-scroll-proportion="0.0">
+-          <caret line="0" column="14" selection-start-line="0" selection-start-column="14" selection-end-line="0" selection-end-column="14" />
++          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+         </state>
+       </provider>
+     </entry>
+-    <entry file="file://$PROJECT_DIR$/bootstrap/app.php">
++    <entry file="file://$PROJECT_DIR$/config/database.php">
+       <provider selected="true" editor-type-id="text-editor">
++        <state vertical-scroll-proportion="0.42173913">
++          <caret line="57" column="51" selection-start-line="57" selection-start-column="51" selection-end-line="57" selection-end-column="51" />
++        </state>
++      </provider>
++    </entry>
++    <entry file="file://$PROJECT_DIR$/app/User.php">
++      <provider selected="true" editor-type-id="text-editor">
+         <state vertical-scroll-proportion="0.0">
+           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+         </state>
+       </provider>
+     </entry>
+-    <entry file="file://$PROJECT_DIR$/config/app.php">
++    <entry file="file://$PROJECT_DIR$/.env">
+       <provider selected="true" editor-type-id="text-editor">
+-        <state vertical-scroll-proportion="-1.4039409">
+-          <caret line="54" column="19" selection-start-line="54" selection-start-column="17" selection-end-line="54" selection-end-column="19" />
++        <state vertical-scroll-proportion="0.0">
++          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+         </state>
+       </provider>
+     </entry>
+-    <entry file="file://$PROJECT_DIR$/resources/views/welcome.blade.php">
++    <entry file="file://$PROJECT_DIR$/bootstrap/app.php">
+       <provider selected="true" editor-type-id="text-editor">
+-        <state vertical-scroll-proportion="0.6551724">
+-          <caret line="21" column="4" selection-start-line="21" selection-start-column="4" selection-end-line="21" selection-end-column="4" />
++        <state vertical-scroll-proportion="-1.5268543">
++          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+         </state>
+       </provider>
+     </entry>
+-    <entry file="file://$PROJECT_DIR$/config/view.php">
++    <entry file="file://$PROJECT_DIR$/server.php">
+       <provider selected="true" editor-type-id="text-editor">
+         <state vertical-scroll-proportion="0.0">
+           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+         </state>
+       </provider>
+     </entry>
+-    <entry file="file://$PROJECT_DIR$/config/database.php">
++    <entry file="file://$PROJECT_DIR$/artisan">
+       <provider selected="true" editor-type-id="text-editor">
+-        <state vertical-scroll-proportion="0.42173913">
+-          <caret line="57" column="51" selection-start-line="57" selection-start-column="51" selection-end-line="57" selection-end-column="51" />
+-          <folding />
++        <state vertical-scroll-proportion="0.0">
++          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+         </state>
+       </provider>
+     </entry>
+-    <entry file="file://D:/Dropbox/Dropbox/PHP/codersed.com/www/_module/post.php">
++    <entry file="file://$PROJECT_DIR$/vendor/autoload.php">
+       <provider selected="true" editor-type-id="text-editor">
+         <state vertical-scroll-proportion="0.0">
+           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+-          <folding />
+         </state>
+       </provider>
+     </entry>
++    <entry file="file://$PROJECT_DIR$/composer.json">
++      <provider selected="true" editor-type-id="text-editor">
++        <state vertical-scroll-proportion="-0.2915601">
++          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
++        </state>
++      </provider>
++    </entry>
++    <entry file="file://$PROJECT_DIR$/readme.md">
++      <provider selected="true" editor-type-id="text-editor">
++        <state vertical-scroll-proportion="0.0">
++          <caret line="0" column="10" selection-start-line="0" selection-start-column="10" selection-end-line="0" selection-end-column="10" />
++        </state>
++      </provider>
++    </entry>
++    <entry file="file://$PROJECT_DIR$/config/app.php">
++      <provider selected="true" editor-type-id="text-editor">
++        <state vertical-scroll-proportion="6.2397375">
++          <caret line="200" column="52" selection-start-line="200" selection-start-column="52" selection-end-line="200" selection-end-column="52" />
++        </state>
++      </provider>
++    </entry>
+     <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
+       <provider selected="true" editor-type-id="text-editor">
+-        <state vertical-scroll-proportion="-3.392857">
+-          <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
++        <state vertical-scroll-proportion="0.18719211">
++          <caret line="6" column="42" selection-start-line="6" selection-start-column="42" selection-end-line="6" selection-end-column="42" />
+           <folding />
+         </state>
+       </provider>
+     </entry>
+     <entry file="file://$PROJECT_DIR$/resources/views/post.blade.php">
+       <provider selected="true" editor-type-id="text-editor">
+-        <state vertical-scroll-proportion="-1.3571428">
+-          <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
++        <state vertical-scroll-proportion="0.9671593">
++          <caret line="31" column="17" selection-start-line="31" selection-start-column="17" selection-end-line="31" selection-end-column="17" />
+           <folding />
+         </state>
+       </provider>
+     </entry>
+     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/PostController.php">
+       <provider selected="true" editor-type-id="text-editor">
+-        <state vertical-scroll-proportion="0.32022473">
+-          <caret line="12" column="42" selection-start-line="12" selection-start-column="42" selection-end-line="12" selection-end-column="42" />
++        <state vertical-scroll-proportion="0.31198686">
++          <caret line="10" column="12" selection-start-line="10" selection-start-column="12" selection-end-line="10" selection-end-column="12" />
+           <folding>
+             <element signature="e#40#68#0#PHP" expanded="true" />
+           </folding>
+\ No newline at end of file
+Index: composer.json
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>windows-1251
+===================================================================
+--- composer.json	(revision f70ba54713bc490652bceb9b5e2193671443bfab)
++++ composer.json	(revision )
+@@ -8,7 +8,8 @@
+         "php": ">=5.5.9",
+         "laravel/framework": "5.1.*",
+         "doctrine/dbal": "2.3.5",
+-        "barryvdh/laravel-ide-helper": "v2.1.0"
++        "barryvdh/laravel-ide-helper": "v2.1.0",
++        "laravelcollective/html": "v5.1.6"
+     },
+     "require-dev": {
+         "fzaninotto/faker": "~1.4",
+Index: composer.lock
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- composer.lock	(revision f70ba54713bc490652bceb9b5e2193671443bfab)
++++ composer.lock	(revision )
+@@ -4,8 +4,8 @@
+         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+         "This file is @generated automatically"
+     ],
+-    "hash": "89c807172dc8610dfc769484912e5d59",
+-    "content-hash": "c6ffce6cd02caa206d0459da532449c3",
++    "hash": "84c9607f1a3cd9d23c15404e35eb774d",
++    "content-hash": "3ac922c94c569336db93fe59f0a9f6e9",
+     "packages": [
+         {
+             "name": "barryvdh/laravel-ide-helper",
+@@ -947,6 +947,56 @@
+             "time": "2015-10-14 15:49:40"
+         },
+         {
++            "name": "laravelcollective/html",
++            "version": "v5.1.6",
++            "source": {
++                "type": "git",
++                "url": "https://github.com/LaravelCollective/html.git",
++                "reference": "8b7c357e78b8fb6a2e48377cf2441441aac6dd1e"
++            },
++            "dist": {
++                "type": "zip",
++                "url": "https://api.github.com/repos/LaravelCollective/html/zipball/8b7c357e78b8fb6a2e48377cf2441441aac6dd1e",
++                "reference": "8b7c357e78b8fb6a2e48377cf2441441aac6dd1e",
++                "shasum": ""
++            },
++            "require": {
++                "illuminate/http": "5.1.*",
++                "illuminate/routing": "5.1.*",
++                "illuminate/session": "5.1.*",
++                "illuminate/support": "5.1.*",
++                "php": ">=5.5.9"
++            },
++            "require-dev": {
++                "mockery/mockery": "~0.9",
++                "phpunit/phpunit": "~4.0"
++            },
++            "type": "library",
++            "autoload": {
++                "psr-4": {
++                    "Collective\\Html\\": "src/"
++                },
++                "files": [
++                    "src/helpers.php"
++                ]
++            },
++            "notification-url": "https://packagist.org/downloads/",
++            "license": [
++                "MIT"
++            ],
++            "authors": [
++                {
++                    "name": "Taylor Otwell",
++                    "email": "taylorotwell@gmail.com"
++                },
++                {
++                    "name": "Adam Engebretson",
++                    "email": "adam@laravelcollective.com"
++                }
++            ],
++            "time": "2015-09-03 17:16:48"
++        },
++        {
+             "name": "league/flysystem",
+             "version": "1.0.15",
+             "source": {
+@@ -1245,16 +1295,16 @@
+         },
+         {
+             "name": "paragonie/random_compat",
+-            "version": "1.0.9",
++            "version": "1.0.10",
+             "source": {
+                 "type": "git",
+                 "url": "https://github.com/paragonie/random_compat.git",
+-                "reference": "7647ac58c35ece044b939e01c85dbaa73ed26351"
++                "reference": "2fa50aa2f17066fa74ba00d943e8cee1a98284af"
+             },
+             "dist": {
+                 "type": "zip",
+-                "url": "https://api.github.com/repos/paragonie/random_compat/zipball/7647ac58c35ece044b939e01c85dbaa73ed26351",
+-                "reference": "7647ac58c35ece044b939e01c85dbaa73ed26351",
++                "url": "https://api.github.com/repos/paragonie/random_compat/zipball/2fa50aa2f17066fa74ba00d943e8cee1a98284af",
++                "reference": "2fa50aa2f17066fa74ba00d943e8cee1a98284af",
+                 "shasum": ""
+             },
+             "require": {
+@@ -1286,7 +1336,7 @@
+                 "pseudorandom",
+                 "random"
+             ],
+-            "time": "2015-10-20 15:22:41"
++            "time": "2015-10-23 13:21:37"
+         },
+         {
+             "name": "phpdocumentor/reflection-docblock",
+@@ -2925,16 +2975,16 @@
+         },
+         {
+             "name": "phpunit/phpunit",
+-            "version": "4.8.14",
++            "version": "4.8.16",
+             "source": {
+                 "type": "git",
+                 "url": "https://github.com/sebastianbergmann/phpunit.git",
+-                "reference": "b4900675926860bef091644849305399b986efa2"
++                "reference": "625f8c345606ed0f3a141dfb88f4116f0e22978e"
+             },
+             "dist": {
+                 "type": "zip",
+-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/b4900675926860bef091644849305399b986efa2",
+-                "reference": "b4900675926860bef091644849305399b986efa2",
++                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/625f8c345606ed0f3a141dfb88f4116f0e22978e",
++                "reference": "625f8c345606ed0f3a141dfb88f4116f0e22978e",
+                 "shasum": ""
+             },
+             "require": {
+@@ -2993,7 +3043,7 @@
+                 "testing",
+                 "xunit"
+             ],
+-            "time": "2015-10-17 15:03:30"
++            "time": "2015-10-23 06:48:33"
+         },
+         {
+             "name": "phpunit/phpunit-mock-objects",

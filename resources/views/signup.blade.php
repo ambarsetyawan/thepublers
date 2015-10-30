@@ -4,17 +4,17 @@
         <ul class="cols block">
             <li>
                 <label>Имя<br>
-                    <input type="text" name="user_firstname">
+                    <input type="text" name="user_firstname" value="{{ old('user_firstname') }}">
                 </label>
             </li>
             <li>
                 <label>Фамилия<br>
-                    <input type="text" name="user_lastname">
+                    <input type="text" name="user_lastname" value="{{ old('user_lastname') }}">
                 </label>
             </li>
             <li>
                 <label>Email<br>
-                    <input type="email" name="user_email">
+                    <input type="email" name="user_email" value="{{ old('user_email') }}">
                 </label>
             </li>
             <li>
