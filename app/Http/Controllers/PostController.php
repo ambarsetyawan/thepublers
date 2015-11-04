@@ -25,7 +25,7 @@ class PostController extends Controller
         $this->validate($request, $rules->rules());
 
         $post_cover = Image::make($request->file('post_cover'))
-            ->fit(600, null)
+            ->resizeCanvas(600, null)
             ->save('content/post_cover/' . time() . '.' . $request->file('post_cover')->getClientOriginalExtension());
 
         $post = new PostModel();
@@ -38,12 +38,12 @@ class PostController extends Controller
         $post->save();
     }
 
-    public function show($id) {
-        return view('show_post');
+    public function show(PostModel $post, $id) {
+        return view('show_post', ['post' => $post->all()]);
     }
 
     public function edit($id) {
-        //
+        return 'Hello';
     }
 
     public function update(Request $request, $id) {
