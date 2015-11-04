@@ -1,30 +1,24 @@
+@foreach ($errors->all() as $error)
+    <li>{{ $error }}</li>
+@endforeach
+
 <div class="wrapper">
-    <form enctype="multipart/form-data" method="GET" action="">
-        <input type="hidden" name="_token" value="{{ csrf_token() }}">
-        <ul class="cols block">
-            <li>
-                <label for="news_cover">Обложка<br>
-                    <input type="file" name="news_cover">
-                </label>
-            </li>
-            <li>
-                <label for="news_title">Название статьи<br>
-                    <input type="text" name="news_title" maxlength="64">
-                </label>
-            </li>
-            <li>
-                <label for="news_preview">Анонс<br>
-                    <textarea name="news_preview" id="" cols="30" rows="10" maxlength="128"></textarea>
-                </label>
-            </li>
-            <li>
-                <label for="news_content">Информация<br>
-                    <textarea name="news_content" id="" cols="30" rows="10"></textarea>
-                </label>
-            </li>
-            <li>
-                <input type="submit" value="Опубликовать статью">
-            </li>
-        </ul>
-    </form>
+    {!! Form::open(['post' => 'post', 'method' => 'post', 'files'=> true]) !!}
+    {!! Form::label('post_cover', 'Обложка:') !!}<br>
+    {!! Form::file('post_cover') !!}<br>
+
+    {!! Form::label('post_title', 'Название статьи:') !!}<br>
+    {!! Form::text('post_title') !!}<br>
+
+    {!! Form::label('post_category', 'Выбрать категорию:') !!}<br>
+    {!! Form::select('post_category', array('news' => 'Новости', 'auto' => 'Авто')) !!}<br>
+
+    {!! Form::label('post_preview', 'Анонс новости:') !!}<br>
+    {!! Form::textarea('post_preview') !!}<br>
+
+    {!! Form::label('post_text', 'Информация:') !!}<br>
+    {!! Form::textarea('post_text') !!}<br>
+
+    {!! Form::submit('Добавить') !!}<br>
+    {!! Form::close() !!}
 </div>

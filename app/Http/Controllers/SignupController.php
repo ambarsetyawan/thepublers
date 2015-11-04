@@ -1,13 +1,11 @@
 <?php
 namespace App\Http\Controllers;
 
-use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\UserModel;
 use App\Http\Requests;
 use App\Http\Requests\SignupRequest;
 use Intervention\Image\ImageManagerStatic as Image;
-use DateTime;
 
 class SignupController extends Controller
 {
@@ -30,7 +28,7 @@ class SignupController extends Controller
     }
 
 
-    public function store(SignupRequest $request)
+    public function store(Request $request)
     {
         $rules = new SignupRequest();
         $this->validate($request, $rules->rules());

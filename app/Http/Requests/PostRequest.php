@@ -16,10 +16,18 @@ class PostRequest extends Request
     public function rules()
     {
         return [
-            'news_cover' => 'required|image|mimes:jpeg,jpg,png,gif',
-            'news_title' => 'required|max:128',
-            'news_preview' => 'required|max:128',
-            'news_content' => 'required',
+            'post_cover' => 'required|image|mimes:jpeg,jpg,png,gif|max:255',
+            'post_title' => 'required|min:3|max:128',
+            'post_category' => 'required',
+            'post_preview' => 'required|min:3|max:128',
+            'post_text' => 'required|min:3',
         ];
+
     }
+
+    public function message()
+    {
+
+    }
+
 }
