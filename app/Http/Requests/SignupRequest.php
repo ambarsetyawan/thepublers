@@ -4,13 +4,15 @@ namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
 
-
 class SignupRequest extends Request {
-    public function authorize() {
+
+    public function authorize()
+    {
         return true;
     }
 
-    public function rules() {
+    public function rules()
+    {
         return [
             'user_firstname' => 'required|min:3|max:32',
             'user_lastname' => 'required|min:3|max:32',
@@ -23,11 +25,11 @@ class SignupRequest extends Request {
     public function messages()
     {
         return [
-            'user_firstname.required' => 'A user_firstname is required',
-            'user_lastname.required'  => 'A user_lastname is required',
-            'user_email.required'  => 'A user_email is required or exist in db',
-            'user_password.required'  => 'A user_password is required and over 3 symbol',
-            'user_cover_address.required'  => 'A user_cover_address is required',
+            'user_firstname.required' => 'Имя должно быть заполнено и быть больше 3 символов',
+            'user_lastname.required'  => 'Фамилия должна быть заполнена и быть больше 3 символов',
+            'user_email.required'  => 'Email указан не верно, или пользователь с таким email существует',
+            'user_password.required'  => 'Пароль должен быть заполнен и быть больше 3 символов',
+            'user_cover_address.required'  => 'Обложка должна быть в формате: jpeg, jpg, png, gif',
         ];
     }
 }

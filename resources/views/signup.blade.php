@@ -1,35 +1,25 @@
 <div class="wrapper">
-    <form enctype="multipart/form-data" method="POST" action="">
-        <input type="hidden" name="_token" value="{{ csrf_token() }}">
-        <ul class="cols block">
-            <li>
-                <label>Имя<br>
-                    <input type="text" name="user_firstname" value="{{ old('user_firstname') }}">
-                </label>
-            </li>
-            <li>
-                <label>Фамилия<br>
-                    <input type="text" name="user_lastname" value="{{ old('user_lastname') }}">
-                </label>
-            </li>
-            <li>
-                <label>Email<br>
-                    <input type="email" name="user_email" value="{{ old('user_email') }}">
-                </label>
-            </li>
-            <li>
-                <label>Пароль<br>
-                    <input type="password" name="user_password">
-                </label>
-            </li>
-            <li>
-                <label>Аватар 70 x 70<br>
-                    <input type="file" name="user_cover_address">
-                </label>
-            </li>
-            <li>
-                <input type="submit" value="Зарегистрироваться">
-            </li>
-        </ul>
-    </form>
+    {!! Form::open(['user' => 'signup', 'method' => 'post', 'files'=> true]) !!}
+    {!! Form::label('user_firstname', 'Имя:') !!}<br>
+    {!! Form::text('user_firstname') !!}<br>
+    {{ $errors->first('user_firstname') }}<br>
+
+    {!! Form::label('user_lastname', 'Фамилия:') !!}<br>
+    {!! Form::text('user_lastname') !!}<br>
+    {{ $errors->first('user_lastname') }}<br>
+
+    {!! Form::label('user_email', 'Email:') !!}<br>
+    {!! Form::email('user_email') !!}<br>
+    {{ $errors->first('user_email') }}<br>
+
+    {!! Form::label('user_password', 'Пароль:') !!}<br>
+    {!! Form::password('user_password') !!}<br>
+    {{ $errors->first('user_password') }}<br>
+
+    {!! Form::label('user_cover_address', 'Обложка:') !!}<br>
+    {!! Form::file('user_cover_address') !!}<br>
+    {{ $errors->first('user_cover_address') }}<br>
+
+    {!! Form::submit('Go') !!}<br>
+    {!! Form::close() !!}
 </div>

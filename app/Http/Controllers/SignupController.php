@@ -1,26 +1,74 @@
 <?php
-
 namespace App\Http\Controllers;
 
-use Hash;
+use Carbon\Carbon;
+use Illuminate\Http\Request;
 use App\UserModel;
-use App\Http\Requests\SignupRequest;
 use App\Http\Requests;
+use App\Http\Requests\SignupRequest;
+use Intervention\Image\ImageManagerStatic as Image;
+use DateTime;
+
+class SignupController extends Controller
+{
 
 
-class SignupController extends Controller {
+    function __construct(UserModel $model)
+    {
+        $this->model = $model;
+    }
 
-    public function index() {
+    public function index()
+    {
         return view('signup');
     }
 
-    public function store(SignupRequest $request) {
-        $model = new UserModel();
-        $model->user_firstname = $request->user_firstname;
-        $model->user_lastname = $request->user_lastname;
-        $model->user_email = $request->user_email;
-        $model->user_password = Hash::make($request->user_password);
-        $model->user_cover_address = $request->user_cover_address;
-        $model->save();
+
+    public function create()
+    {
+
+    }
+
+
+    public function store(SignupRequest $request)
+    {
+        $rules = new SignupRequest();
+        $this->validate($request, $rules->rules());
+
+        $user_cover = Image::make($request->file('user_cover_address'))
+            ->fit(150, 150)
+            ->save('content/user_cover/' . time() . '.' . $request->file('user_cover_address')->getClientOriginalExtension());
+
+        $user = new UserModel();
+        $user->user_firstname = $request->user_firstname;
+        $user->user_lastname = $request->user_lastname;
+        $user->user_email = $request->user_email;
+        $user->user_password = $request->user_password;
+        $user->user_cover_address = $user_cover->basePath();
+        $user->save();
+    }
+
+
+    public function show($id)
+    {
+
+    }
+
+
+    public function edit($id)
+    {
+
+    }
+
+
+    public function update(Request $request, $id)
+    {
+
+    }
+
+
+    public function destroy($id)
+    {
+
     }
 }
