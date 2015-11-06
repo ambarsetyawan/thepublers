@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Requests\PostRequest;
@@ -45,7 +46,8 @@ class PostController extends Controller
     }
 
     public function edit($id) {
-
+        $edit_post = PostModel::where('post_id', $id)->first();
+        return view('edit_post', ['edit_post' => $edit_post]);
     }
 
     public function update(Request $request, $id) {

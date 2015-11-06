@@ -8,4 +8,5 @@ class PostModel extends Model {
     protected $table = 'post';
     protected $dateFormat = 'U';
     protected $primaryKey = 'post_id';
+    public $timestamps = false;
 }

@@ -11,5 +11,4 @@ class UserModel extends Model
     protected $table = 'user';
     protected $dateFormat = 'U';
     protected $primaryKey = 'user_id';
-    protected $dates = ['created_at', 'updated_at'];
  }
