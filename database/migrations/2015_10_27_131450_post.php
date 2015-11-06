@@ -15,7 +15,8 @@ class Post extends Migration{
             $table->string('post_category', 32);
             $table->string('post_preview', 128);
             $table->text('post_text');
-            $table->timestamps();
+            $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP'));
         });
     }
 

@@ -11,7 +11,8 @@ use Intervention\Image\ImageManagerStatic as Image;
 class PostController extends Controller
 {
     public function index() {
-        return view('post');
+        $post_category = ['news' => 'Новости', 'auto' => 'Авто'];
+        return view('post', ['post_category' => $post_category]);
     }
 
     public function create() {
@@ -38,12 +39,13 @@ class PostController extends Controller
         $post->save();
     }
 
-    public function show(PostModel $post, $id) {
-        return view('show_post', ['post' => $post->all()]);
+    public function show($id) {
+        $post = PostModel::where('post_id', $id);
+        return view('show_post', ['post' => $post]);
     }
 
     public function edit($id) {
-        return 'Hello';
+
     }
 
     public function update(Request $request, $id) {

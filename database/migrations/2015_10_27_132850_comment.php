@@ -12,7 +12,8 @@ class Comment extends Migration {
             $table->integer('comment_post_id');
             $table->string('comment_author', 64);
             $table->string('comment_text', 256);
-            $table->timestamps();
+            $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP'));
         });
     }
 

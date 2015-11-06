@@ -11,7 +11,7 @@
     {!! Form::text('post_title') !!}<br>
 
     {!! Form::label('post_category', 'Выбрать категорию:') !!}<br>
-    {!! Form::select('post_category', array('news' => 'Новости', 'auto' => 'Авто')) !!}<br>
+    {!! Form::select('post_category', ['L' => 'Large', 'S' => 'Small']) !!}<br>
 
     {!! Form::label('post_preview', 'Анонс новости:') !!}<br>
     {!! Form::textarea('post_preview') !!}<br>
