@@ -1,0 +1,45 @@
+@import url(https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700,700italic&subset=latin,cyrillic-ext,latin-ext,cyrillic);
+*{border:0px; padding:0px; margin:0px; outline-style:none; vertical-align:baseline; -webkit-text-size-adjust:none; -moz-text-size-adjust:none; -ms-text-size-adjust:none; text-size-adjust:none; box-sizing:border-box; -moz-box-sizing:border-box; -webkit-box-sizing:border-box;}
+body {position:relative; font-family:"PT Sans", sans-serif;; color:#333333; font-weight:normal; letter-spacing:-0.4px; background:#fff;}
+
+html{height:100%; min-width:980px; color:#565656; font-size:14px;}
+body{height:100%;}
+
+h3 {letter-spacing:-2px; font-size:30px; font-weight:normal; line-height:0.8; margin-bottom:10px;}
+h4 {letter-spacing:-1.5px; font-size:21px; font-weight:bold; line-height:0.8;}
+
+textarea {width:100%; font-family:"PT Sans", sans-serif;; font-weight:normal; letter-spacing:-0.4px; padding:30px 20px;}
+input, select, textarea {margin:5px 0px 5px 0px; font-family:"PT Sans", sans-serif;; border:1px solid #dddddd; padding:15px; font-size:15px; background:#ffffff; width:100%; padding:15px; font-weight:normal; letter-spacing:-0.3px;}
+input:disabled, input[type="file"] {background:#f7f7f9;}
+input[type="file"] {font-family:"PT Sans", sans-serif;; width:100%; color:#cccccc; font-size:15px;}
+input[type="submit"] {font-family:"PT Sans", sans-serif;; width:auto; cursor:pointer; padding:5px 15px; background: #ffffff; background: rgba(255,255,255,1); background: -moz-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 100%); background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(255,255,255,1)), color-stop(100%, rgba(246,246,246,1))); background: -webkit-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 100%); background: -o-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 100%); background: -ms-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 100%); background: linear-gradient(to bottom, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 100%); filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#f6f6f6', GradientType=0 );}
+input[type="submit"]:hover {background:none;}
+label {display:block; padding:0px; margin-top:30px; margin-bottom:3px; width:100%; font-size:16px; font-weight:bold;}
+p {display:inline-block; margin:20px 0px 0px 0px; line-height:1.6;}
+
+.avatar {border-radius:50%;}
+
+ul.cols {display:table; table-layout:fixed; width:100%; padding:0px; margin:0px auto;}
+ul.cols >li{display:table-cell; text-align:left; vertical-align:top; list-style-type:none; padding:0px; margin:0px;}
+ul.cols >li.blank{width:30px; display:table-cell; list-style-type:none;}
+ul.cols >li.left{width:30%;}
+ul.cols >li.right{width:30%;}
+ul.cols li p:last-child{margin:0px;}
+ul.cols.date >li:first-child{width:90px;}
+ul.cols.action >li:first-child{width:180px;}
+ul.cols.news >li:first-child{width:80px;}
+ul.cols li ul.items{margin:0px;}
+ul.cols li ul.items >li{list-style-type:none; margin:0px 0px 30px 0px;}
+ul.cols li ul.items >li:last-child{margin:0px;}
+
+ul, ol{padding:0px; margin:20px 0px;}
+ul li{padding:0px; margin:0px 0px 5px 20px; list-style-type:square; text-align:left;}
+ol li{padding:0px; margin:0px 0px 5px 20px; list-style-type:decimal; text-align:left;}
+
+div.header {width:100%; border-bottom:1px solid #e7e7e7; padding: 20px 0px; margin-bottom:30px;}
+
+div.book_desc > ul.cols > li:first-child {width:450px;}
+div.book_desc > ul.cols > li > ul.cols > li {display:block;}
+div.book_desc > ul.cols > li > ul.cols > li {margin-bottom:7px;}
+div.book_desc > ul.cols > li > ul.cols > li small {font-size:12px;}
+div.book_desc > ul.cols > li > ul.cols > li span {line-height:1.5; font-size:16px;}

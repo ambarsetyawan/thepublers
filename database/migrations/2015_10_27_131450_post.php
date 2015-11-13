@@ -8,14 +8,14 @@ class Post extends Migration{
 
     public function up()
     {
-        Schema::create('post', function (Blueprint $table){
-            $table->increments('post_id');
-            $table->string('post_author', 64);
-            $table->string('post_title', 128);
-            $table->string('post_cover');
-            $table->string('post_category', 32);
-            $table->string('post_preview', 128);
-            $table->text('post_text');
+        Schema::create('book', function (Blueprint $table){
+            $table->increments('book_id');
+            $table->string('book_author', 64);
+            $table->string('book_title', 128);
+            $table->integer('book_year');
+            $table->string('book_cover');
+            $table->string('book_category', 32);
+            $table->text('book_text');
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP'));
         });
@@ -23,6 +23,6 @@ class Post extends Migration{
 
     public function down()
     {
-        Schema::drop('post');
+        Schema::drop('book');
     }
 }

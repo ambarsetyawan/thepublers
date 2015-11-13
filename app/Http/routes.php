@@ -4,6 +4,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-
-Route::resource('post', 'PostController');
+Route::get('/', 'Main@index');
+Route::resource('book', 'BookController');
 Route::resource('signup', 'SignupController');
