@@ -2,16 +2,10 @@
 
 <div class="wrapper">
     <div class="book_desc">
-        <a href="">Редактировать книгу</a>
-
-        <form action="" method="POST">
-            <input type="hidden" name="_method" value="DELETE">
-            <input type="hidden" name="_token" value="{{ csrf_token() }}">
-            <input type="submit" value="Удалить книгу">
-        </form>
-
-        <ul class="cols">
-            @foreach($book as $content)
+        @foreach($book as $content)
+            <a href="{{ asset('book/' . $content->book_id . '/edit') }}">Редактировать книгу</a>
+            <a href="{{ action('BookController@destroy', ['book_id' => $content->book_id])}}">Удалить книгу</a>
+            <ul class="cols">
                 <li>
                     <img src="/{{ $content->book_cover }}" alt="{{ $content->book_title }}"
                          title="{{ $content->book_title }}">
@@ -25,7 +19,7 @@
                         <li><span>{{ $content->book_text }}</span></li>
                     </ul>
                 </li>
-            @endforeach
-        </ul>
+                @endforeach
+            </ul>
     </div>
 </div>

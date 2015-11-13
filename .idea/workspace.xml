@@ -1,24 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5ef6e148-84d9-445e-b706-3ec434a36888" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/Http/Requests/BookRequest.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/Http/Controllers/MainPageController.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/views/edit_book.blade.php" />
-      <change type="DELETED" beforePath="C:\webserver\data\htdocs\thepublers\app\Http\Requests\PostRequest.php" afterPath="" />
-      <change type="DELETED" beforePath="C:\webserver\data\htdocs\thepublers\resources\views\edit_post.blade.php" afterPath="" />
-      <change type="MOVED" beforePath="C:\webserver\data\htdocs\thepublers\app\Http\Controllers\PostController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/BookController.php" />
-      <change type="MOVED" beforePath="C:\webserver\data\htdocs\thepublers\app\PostModel.php" afterPath="$PROJECT_DIR$/app/BookModel.php" />
-      <change type="MOVED" beforePath="C:\webserver\data\htdocs\thepublers\resources\assets\css\css.css" afterPath="$PROJECT_DIR$/public/css/css.css" />
-      <change type="MOVED" beforePath="C:\webserver\data\htdocs\thepublers\resources\views\post.blade.php" afterPath="$PROJECT_DIR$/resources/views/book.blade.php" />
-      <change type="MOVED" beforePath="C:\webserver\data\htdocs\thepublers\resources\views\show_post.blade.php" afterPath="$PROJECT_DIR$/resources/views/show_book.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/database/migrations/2015_10_27_130251_user.php" afterPath="$PROJECT_DIR$/database/migrations/2015_10_27_130251_user.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/database/migrations/2015_10_27_131450_post.php" afterPath="$PROJECT_DIR$/database/migrations/2015_10_27_131450_post.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/UserModel.php" afterPath="$PROJECT_DIR$/app/UserModel.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/app.php" afterPath="$PROJECT_DIR$/config/app.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/composer.lock" afterPath="$PROJECT_DIR$/composer.lock" />
+    <list default="true" id="5ef6e148-84d9-445e-b706-3ec434a36888" name="Default" comment="add new functions">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/content/book_cover/1447418645.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/content/book_cover/1447419882.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/BookController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/BookController.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/encodings.xml" afterPath="$PROJECT_DIR$/.idea/encodings.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/routes.php" afterPath="$PROJECT_DIR$/app/Http/routes.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/show_book.blade.php" afterPath="$PROJECT_DIR$/resources/views/show_book.blade.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/welcome.blade.php" afterPath="$PROJECT_DIR$/resources/views/welcome.blade.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
@@ -50,8 +38,8 @@
       <file leaf-file-name="show_book.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/show_book.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-2.7142856">
-              <caret line="4" column="38" selection-start-line="4" selection-start-column="38" selection-end-line="4" selection-end-column="38" />
+            <state vertical-scroll-proportion="-4.071429">
+              <caret line="6" column="90" selection-start-line="6" selection-start-column="90" selection-end-line="6" selection-end-column="90" />
               <folding />
             </state>
           </provider>
@@ -60,7 +48,7 @@
       <file leaf-file-name="book.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/book.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-1.1071428">
+            <state vertical-scroll-proportion="-10.178572">
               <caret line="15" column="26" selection-start-line="15" selection-start-column="26" selection-end-line="15" selection-end-column="26" />
               <folding>
                 <marker date="1447239332447" expanded="true" signature="655:1186" placeholder="..." />
@@ -71,14 +59,14 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BookController.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="BookController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/BookController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="3.3180873">
-              <caret line="84" column="0" selection-start-line="84" selection-start-column="0" selection-end-line="84" selection-end-column="0" />
+            <state vertical-scroll-proportion="-18.535715">
+              <caret line="91" column="0" selection-start-line="91" selection-start-column="0" selection-end-line="91" selection-end-column="33" />
               <folding>
                 <element signature="e#40#68#0#PHP" expanded="true" />
-                <marker date="1447410630469" expanded="true" signature="446:1049" placeholder="..." />
+                <marker date="1447421940396" expanded="true" signature="446:1049" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -96,11 +84,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="edit_book.blade.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/edit_book.blade.php">
+      <file leaf-file-name="welcome.blade.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/resources/views/welcome.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.0">
-              <caret line="0" column="22" selection-start-line="0" selection-start-column="22" selection-end-line="0" selection-end-column="22" />
+            <state vertical-scroll-proportion="0.029141104">
+              <caret line="1" column="8" selection-start-line="1" selection-start-column="8" selection-end-line="1" selection-end-column="8" />
               <folding />
             </state>
           </provider>
@@ -186,14 +174,14 @@
         <option value="$PROJECT_DIR$/app/Http/Requests/BookRequest.php" />
         <option value="$PROJECT_DIR$/database/migrations/2015_10_27_131450_post.php" />
         <option value="$PROJECT_DIR$/resources/views/book.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/welcome.blade.php" />
         <option value="$PROJECT_DIR$/public/css/css.css" />
         <option value="$PROJECT_DIR$/app/BookModel.php" />
         <option value="$PROJECT_DIR$/public/.htaccess" />
-        <option value="$PROJECT_DIR$/resources/views/show_book.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/MainPageController.php" />
         <option value="$PROJECT_DIR$/resources/views/edit_book.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/show_book.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/BookController.php" />
+        <option value="$PROJECT_DIR$/resources/views/welcome.blade.php" />
       </list>
     </option>
   </component>
@@ -284,9 +272,9 @@
   </component>
   <component name="ProjectFrameBounds">
     <option name="x" value="187" />
-    <option name="y" value="162" />
+    <option name="y" value="163" />
     <option name="width" value="1497" />
-    <option name="height" value="818" />
+    <option name="height" value="817" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="true" id="Add" />
@@ -319,6 +307,16 @@
             <PATH_ELEMENT>
               <option name="myItemId" value="thepublers" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="thepublers" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="thepublers" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
@@ -503,26 +501,32 @@
       <option name="project" value="LOCAL" />
       <updated>1446817881701</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="add new functions">
+      <created>1447410741445</created>
+      <option name="number" value="00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1447410741445</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="187" y="162" width="1497" height="818" extended-state="0" />
-    <editor active="true" />
+    <frame x="187" y="163" width="1497" height="817" extended-state="0" />
+    <editor active="false" />
     <layout>
       <window_info id="Gulp" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22619851" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22619851" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32846716" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Command Line Tools Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24259521" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Command Line Tools Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24152543" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32898173" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -795,6 +799,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.25381678">
           <caret line="7" column="39" selection-start-line="7" selection-start-column="39" selection-end-line="7" selection-end-column="39" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -855,17 +860,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/welcome.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.029096479">
-          <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/css/css.css">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="14" column="102" selection-start-line="14" selection-start-column="102" selection-end-line="14" selection-end-column="102" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -888,7 +887,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/book.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.1071428">
+        <state vertical-scroll-proportion="-10.178572">
           <caret line="15" column="26" selection-start-line="15" selection-start-column="26" selection-end-line="15" selection-end-column="26" />
           <folding>
             <marker date="1447239332447" expanded="true" signature="655:1186" placeholder="..." />
@@ -898,11 +897,30 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/edit_book.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="22" selection-start-line="0" selection-start-column="22" selection-end-line="0" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/show_book.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-2.7142856">
-          <caret line="4" column="38" selection-start-line="4" selection-start-column="38" selection-end-line="4" selection-end-column="38" />
+        <state vertical-scroll-proportion="-4.071429">
+          <caret line="6" column="90" selection-start-line="6" selection-start-column="90" selection-end-line="6" selection-end-column="90" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/BookController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-18.535715">
+          <caret line="91" column="0" selection-start-line="91" selection-start-column="0" selection-end-line="91" selection-end-column="33" />
+          <folding>
+            <element signature="e#40#68#0#PHP" expanded="true" />
+            <marker date="1447421940396" expanded="true" signature="446:1049" placeholder="..." />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -916,22 +934,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/edit_book.blade.php">
+    <entry file="file://$PROJECT_DIR$/resources/views/welcome.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="22" selection-start-line="0" selection-start-column="22" selection-end-line="0" selection-end-column="22" />
+        <state vertical-scroll-proportion="0.029141104">
+          <caret line="1" column="8" selection-start-line="1" selection-start-column="8" selection-end-line="1" selection-end-column="8" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/BookController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="3.3180873">
-          <caret line="84" column="0" selection-start-line="84" selection-start-column="0" selection-end-line="84" selection-end-column="0" />
-          <folding>
-            <element signature="e#40#68#0#PHP" expanded="true" />
-            <marker date="1447410630469" expanded="true" signature="446:1049" placeholder="..." />
-          </folding>
         </state>
       </provider>
     </entry>

@@ -35,6 +35,8 @@ class BookController extends Controller {
         $book->book_category = $request->book_category;
         $book->book_text = $request->book_text;
         $book->save();
+
+        return Redirect::to('/');
     }
 
 
