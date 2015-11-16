@@ -10,4 +10,6 @@ class UserModel extends Model
     protected $table = 'user';
     protected $dateFormat = 'U';
     protected $primaryKey = 'user_id';
+
+    protected $fillable = ['user_firstname', 'user_lastname', 'user_email'];
  }

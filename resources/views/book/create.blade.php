@@ -3,7 +3,7 @@
 @endforeach
 
 <div class="wrapper">
-    {!! Form::open(['book' => 'book', 'method' => 'post', 'files'=> true]) !!}
+    {!! Form::open(['method' => 'post', 'files'=> true]) !!}
     {!! Form::label('book_cover', 'Обложка книги:') !!}<br>
     {!! Form::file('book_cover') !!}<br>
 

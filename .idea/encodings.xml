@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="Encoding">
+  <component name="Encoding" defaultCharsetForPropertiesFiles="UTF-8">
     <file url="file://$PROJECT_DIR$/app/Http/Controllers/BookController.php" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/app/Http/Controllers/SignupController.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/app/Http/Controllers/UserController.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/app/Http/Requests/SignupRequest.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/app/Http/routes.php" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/resources/views/edit_book.blade.php" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/resources/views/show_book.blade.php" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/resources/views/signup.blade.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/resources/views/user/show.blade.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/resources/views/user/signup.blade.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/resources/views/welcome.blade.php" charset="UTF-8" />
+    <file url="PROJECT" charset="UTF-8" />
   </component>
 </project>

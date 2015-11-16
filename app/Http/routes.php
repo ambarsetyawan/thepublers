@@ -5,5 +5,9 @@ Route::get('/', function () {
 });
 
 Route::get('/', 'Main@index');
+
+Route::get('/enter', 'EnterController@index');
+Route::post('/enter', 'EnterController@enter');
+
 Route::resource('book', 'BookController');
-Route::resource('signup', 'SignupController');
+Route::resource('user', 'UserController');
