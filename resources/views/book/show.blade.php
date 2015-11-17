@@ -1,5 +1,10 @@
 <link rel="stylesheet" href="{{ asset("css/css.css") }}">
 
+<a href="{{'/'}}">Главная</a>
+<a href="{{'/book'}}">Новая книга</a>
+<a href="{{'/login'}}">Вход</a>
+<a href="{{'/register'}}">Регистрация</a>
+
 <a href="/">Главная</a>
 <div class="wrapper">
     <div class="book_desc">

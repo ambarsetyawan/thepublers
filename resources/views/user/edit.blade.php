@@ -4,6 +4,12 @@
     @endforeach
 </ul>
 
+<a href="{{'/'}}">Главная</a>
+<a href="{{'/book'}}">Новая книга</a>
+<a href="{{'/login'}}">Вход</a>
+<a href="{{'/register'}}">Регистрация</a>
+
+
 <div class="wrapper">
     {!! Form::model($edit_user, ['method' => 'PATCH', 'route' => ['user.update', $edit_user->user_id], 'files' => true]) !!}
 

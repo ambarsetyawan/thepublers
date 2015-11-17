@@ -12,7 +12,7 @@ class User extends Migration{
             $table->string('user_firstname', 32);
             $table->string('user_lastname', 32);
             $table->string('user_email', 32)->unique();
-            $table->string('user_password', 32);
+            $table->string('user_password', 128);
             $table->string('user_cover_address');
             $table->integer('user_status')->default(0);
             $table->integer('user_icq')->default(0);

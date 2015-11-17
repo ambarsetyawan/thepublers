@@ -2,6 +2,12 @@
     <li>{{ $error }}</li>
 @endforeach
 
+<a href="{{'/'}}">Главная</a>
+<a href="{{'/book'}}">Новая книга</a>
+<a href="{{'/login'}}">Вход</a>
+<a href="{{'/register'}}">Регистрация</a>
+
+
 <div class="wrapper">
     {!! Form::open(['method' => 'post', 'files'=> true]) !!}
     {!! Form::label('book_cover', 'Обложка книги:') !!}<br>

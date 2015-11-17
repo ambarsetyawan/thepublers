@@ -6,17 +6,17 @@ use App\UserModel;
 use App\Http\Requests;
 use App\Http\Requests\SignupRequest;
 use App\Http\Requests\UserRequest;
-use Illuminate\Support\Facades\Hash;
 use Intervention\Image\ImageManagerStatic as Image;
 use Redirect;
 use File;
+use Hash;
 
 class UserController extends Controller
 {
 
     public function index()
     {
-        return view('user.signup');
+        return view('user.register');
     }
 
 
@@ -79,7 +79,7 @@ class UserController extends Controller
                     'user_cover_address' => $user_cover->basePath(),
                     'user_firstname' => $request->user_firstname,
                     'user_lastname' => $request->user_lastname,
-                    'user_password' => $request->user_password,
+                    'user_password' => Hash::make($request->user_password),
                     'user_icq' => $request->user_icq,
                     'user_skype' => $request->user_skype,
                     'user_about' => $request->user_about,

@@ -13,6 +13,7 @@ class Main extends Controller{
             ->orderBy('user_id', 'desc')
             ->first();
 
+
         $book = BookModel::orderBy('book_id', 'desc')
             ->first();
 

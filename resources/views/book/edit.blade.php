@@ -2,6 +2,11 @@
     <li>{{ $error }}</li>
 @endforeach
 
+<a href="{{'/'}}">Главная</a>
+<a href="{{'/book'}}">Новая книга</a>
+<a href="{{'/login'}}">Вход</a>
+<a href="{{'/register'}}">Регистрация</a>
+
 <div class="wrapper">
     {!! Form::model($book_edit, ['method' => 'PATCH', 'route' => ['book.update', $book_edit->book_id], 'files' => true]) !!}
     <input name="_method" type="hidden" value="PATCH">
