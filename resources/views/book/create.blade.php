@@ -1,40 +1,60 @@
-@foreach ($errors->all() as $error)
-    <li>{{ $error }}</li>
-@endforeach
-
-<a href="{{'/'}}">Главная</a>
-<a href="{{'/book'}}">Новая книга</a>
-<a href="{{'/login'}}">Вход</a>
-<a href="{{'/register'}}">Регистрация</a>
-
+<link rel="stylesheet" href="{{ asset("css/css.css") }}">
 
 <div class="wrapper">
-    {!! Form::open(['method' => 'post', 'files'=> true]) !!}
-    {!! Form::label('book_cover', 'Обложка книги:') !!}<br>
-    {!! Form::file('book_cover') !!}<br>
+    <div class="errors">
+        <ul class="cols">
+            @foreach($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+    <div class="header">
+        <ul class="cols">
+            @if(Auth::check())
+                <li><a href="{{'/'}}">Главная</a></li>
+                <li><a href="{{'/book'}}">Новая книга</a></li>
+                <li><a href="{{ '/user/' . Auth::user()->user_id }}">Профиль</a></li>
+                <li><a href="{{ '/logout' }}">Выход</a></li>
+            @else
+                <li><a href="{{'/login'}}">Вход</a></li>
+                <li><a href="{{'/user'}}">Регистрация</a></li>
+            @endif
+        </ul>
+    </div>
 
-    {!! Form::label('book_title', 'Название книги:') !!}<br>
-    {!! Form::text('book_title') !!}<br>
+    <form action="/book" method="POST" enctype="multipart/form-data">
+        {{ csrf_field() }}
+        <label for="book_cover">Обложка книги:
+            <input type="file" name="book_cover">
+        </label>
 
-    {!! Form::label('book_author', 'Автор книги:') !!}<br>
-    {!! Form::text('book_author') !!}<br>
+        <label for="book_title">Название книги:
+            <input type="text" name="book_title">
+        </label>
 
-    {!! Form::label('book_year', 'Год издания:') !!}<br>
-    {!! Form::text('book_year') !!}<br>
+        <label for="book_author">Автор книги:
+            <input type="text" name="book_author">
+        </label>
 
-    {!! Form::label('book_category', 'Выбрать категорию:') !!}<br>
-    {!! Form::select('book_category',
-                                ['Художественная литература' => 'Художественная литература',
-                                'Детская литература' => 'Детская литература',
-                                'Бизнес-литература' => 'Бизнес-литература',
-                                'Обучение и наука' => 'Обучение и наука',
-                                'Увлечения' => 'Увлечения',
-                                'Компьютеры и Интернет' => 'Компьютеры и Интернет',
-                                ]) !!}<br>
+        <label for="book_year">Год издания:
+            <input type="text" name="book_year">
+        </label>
 
-    {!! Form::label('book_text', 'Информация:') !!}<br>
-    {!! Form::textarea('book_text') !!}<br>
+        <label for="book_category">Выбрать категорию:
+            <select name="book_category" id="">
+                <option value="Художественная литература">Художественная литература</option>
+                <option value="Детская литература">Детская литература</option>
+                <option value="Бизнес-литература">Бизнес-литература</option>
+                <option value="Обучение и наука">Обучение и наука</option>
+                <option value="Увлечения">Увлечения</option>
+                <option value="Компьютеры и Интернет">Компьютеры и Интернет</option>
+            </select>
+        </label>
 
-    {!! Form::submit('Добавить') !!}<br>
-    {!! Form::close() !!}
+        <label for="book_text">Информация:
+            <textarea name="book_text" id="" cols="30" rows="10"></textarea>
+        </label>
+
+        <input type="submit" value="Добавить">
+    </form>
 </div>

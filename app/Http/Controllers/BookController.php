@@ -94,8 +94,7 @@ class BookController extends Controller
         $remove_cover_from_disk = BookModel::select('book_cover')->where('book_id', $id)->first();
         File::delete(public_path($remove_cover_from_disk->book_cover));
 
-        $remove = BookModel::where('book_id', $id)->first();
-        $remove->delete();
+        BookModel::where('book_id', $id)->first()->delete();
 
         return Redirect::to('/');
     }

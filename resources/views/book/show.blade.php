@@ -1,12 +1,26 @@
 <link rel="stylesheet" href="{{ asset("css/css.css") }}">
 
-<a href="{{'/'}}">Главная</a>
-<a href="{{'/book'}}">Новая книга</a>
-<a href="{{'/login'}}">Вход</a>
-<a href="{{'/register'}}">Регистрация</a>
-
-<a href="/">Главная</a>
 <div class="wrapper">
+    <div class="errors">
+        <ul class="cols">
+            @foreach($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+    <div class="header">
+        <ul class="cols">
+            @if(Auth::check())
+                <li><a href="{{'/'}}">Главная</a></li>
+                <li><a href="{{'/book'}}">Новая книга</a></li>
+                <li><a href="{{ '/user/' . Auth::user()->user_id }}">Профиль</a></li>
+                <li><a href="{{ '/logout' }}">Выход</a></li>
+            @else
+                <li><a href="{{'/login'}}">Вход</a></li>
+                <li><a href="{{'/user'}}">Регистрация</a></li>
+            @endif
+        </ul>
+    </div>
     <div class="book_desc">
         <ul class="cols">
             <li>
@@ -30,9 +44,10 @@
             <li>
                 <ul class="cols">
                     <li><h3>{{ $book->book_title }}</h3></li>
-                    <li><span>{{ $book->book_author }}, {{ $book->book_year }}</span></li>
-                    <li><span>{{ $book->book_category }}</span></li>
-                    <li><span>{{ $book->book_text }}</span></li>
+                    <li><span>Автор:</span> <a href="">{{ $book->book_author }}</a></li>
+                    <li><span>Год издания:</span> {{ $book->book_year }}</li>
+                    <li><span>Категория:</span> <a href="">{{ $book->book_category }}</a></li>
+                    <li><span>Описание: {{ $book->book_text }}</span></li>
                 </ul>
             </li>
         </ul>

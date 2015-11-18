@@ -1,8 +1,8 @@
 <?php
 namespace App\Http\Controllers;
 
+use App\User;
 use Illuminate\Http\Request;
-use App\UserModel;
 use App\Http\Requests;
 use App\Http\Requests\SignupRequest;
 use App\Http\Requests\UserRequest;
@@ -10,6 +10,8 @@ use Intervention\Image\ImageManagerStatic as Image;
 use Redirect;
 use File;
 use Hash;
+use Auth;
+use Session;
 
 class UserController extends Controller
 {
@@ -35,7 +37,7 @@ class UserController extends Controller
             ->fit(150, 150)
             ->save('content/user_cover/' . time() . '.' . $request->file('user_cover_address')->getClientOriginalExtension());
 
-        $user = new UserModel($request->all());
+        $user = new User($request->all());
         $user->user_password = Hash::make($request->user_password);
         $user->user_cover_address = $user_cover->basePath();
         $user->save();
@@ -44,7 +46,7 @@ class UserController extends Controller
 
     public function show($id)
     {
-        $get_user = UserModel::where('user_id', $id)->first();
+        $get_user = User::where('user_id', $id)->first();
         if(is_null($get_user)){
             return Redirect::to('/');
         }
@@ -55,7 +57,7 @@ class UserController extends Controller
 
     public function edit($id)
     {
-        $edit_user = UserModel::where('user_id', $id)->first();
+        $edit_user = User::where('user_id', $id)->first();
         if(is_null($edit_user)){
             return Redirect::to('/');
         }
@@ -73,7 +75,7 @@ class UserController extends Controller
             ->fit(150, 150)
             ->save('content/user_cover/' . time() . '.' . $request->file('user_cover_address')->getClientOriginalExtension());
 
-        UserModel::where('user_id', $id)
+        User::where('user_id', $id)
             ->update(
                 [
                     'user_cover_address' => $user_cover->basePath(),
@@ -90,12 +92,20 @@ class UserController extends Controller
 
     public function destroy($id)
     {
-        $user_cover = UserModel::select('user_cover_address')
+        $user_cover = User::select('user_cover_address')
             ->where('user_id', $id)
             ->first();
 
-        UserModel::where('user_id', $id)->first()->delete();
+        User::where('user_id', $id)->first()->delete();
         File::delete(public_path($user_cover->user_cover_address));
         return Redirect::to('/');
+    }
+
+
+    public function getLogout()
+    {
+        Auth::logout();
+        Session::flush();
+        return Redirect::to('/')->with('message', 'Your are now logged out!');
     }
 }
