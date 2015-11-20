@@ -16,6 +16,7 @@
                 <li><a href="{{ '/user/' . Auth::user()->user_id }}">Профиль</a></li>
                 <li><a href="{{ '/logout' }}">Выход</a></li>
             @else
+                <li><a href="{{'/'}}">Главная</a></li>
                 <li><a href="{{'/login'}}">Вход</a></li>
                 <li><a href="{{'/user'}}">Регистрация</a></li>
             @endif
@@ -38,11 +39,11 @@
         </label>
 
         <label for="user_password">Пароль:
-            <input type="text" name="user_password">
+            <input type="password" name="user_password">
         </label>
 
         <label for="user_email">Email:
-            <input type="text" name="user_email" disabled value="{{ $edit_user->user_email }}">
+            <input type="email" name="user_email" disabled value="{{ $edit_user->user_email }}">
         </label>
 
         <label for="user_icq">ICQ:

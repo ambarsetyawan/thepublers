@@ -16,6 +16,7 @@
                 <li><a href="{{ '/user/' . Auth::user()->user_id }}">Профиль</a></li>
                 <li><a href="{{ '/logout' }}">Выход</a></li>
             @else
+                <li><a href="{{'/'}}">Главная</a></li>
                 <li><a href="{{'/login'}}">Вход</a></li>
                 <li><a href="{{'/user'}}">Регистрация</a></li>
             @endif

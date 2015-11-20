@@ -2,27 +2,30 @@
 
 namespace App\Http\Middleware;
 
+use Illuminate\Auth\Guard;
 use Closure;
-use Illuminate\Contracts\Auth\Guard;
 
-class Authenticate
+class BookAuthenticate
 {
+
     public function __construct(Guard $auth)
     {
         $this->auth = $auth;
     }
 
+
     /*
-        Если guest, то редирект со всех страниц, кроме:
-        index, store. Использует 'auth' UserController
+        Если guest, то редирект со всех страниц,
+        кроме: show. Использует 'book.auth' BookController
     */
+
     public function handle($request, Closure $next)
     {
-
         if($this->auth->guest())
         {
             return redirect('/login');
         }
+
         return $next($request);
     }
 }

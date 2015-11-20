@@ -6,11 +6,7 @@ use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
 {
-    /**
-     * The application's global HTTP middleware stack.
-     *
-     * @var array
-     */
+
     protected $middleware = [
         \Illuminate\Foundation\Http\Middleware\CheckForMaintenanceMode::class,
         \App\Http\Middleware\EncryptCookies::class,
@@ -20,14 +16,17 @@ class Kernel extends HttpKernel
         \App\Http\Middleware\VerifyCsrfToken::class,
     ];
 
-    /**
-     * The application's route middleware.
-     *
-     * @var array
-     */
+
     protected $routeMiddleware = [
         'auth' => \App\Http\Middleware\Authenticate::class,
-        'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
-        'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
+        'auth.access' => \App\Http\Middleware\AuthcheckedAccessPage::class,
+        'book.auth' => \App\Http\Middleware\BookAuthenticate::class,
+        'check.user.id' => \App\Http\Middleware\CheckShowAndEditUserExist::class,
+        'logout' => \App\Http\Middleware\UserLogout::class,
+
+        'auth.enter' => \App\Http\Middleware\RedirectIfAuthenticated::class,
+
+//        'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
+
     ];
 }

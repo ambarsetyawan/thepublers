@@ -12,6 +12,13 @@ use Illuminate\Support\Facades\File;
 
 class BookController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('book.auth', ['except' => ['show']]);
+    }
+
+
     public function index()
     {
         return view('book.create');

@@ -2,6 +2,7 @@
 namespace App\Http\Controllers;
 
 use App\BookModel;
+use App\CommentModel;
 use App\Http\Requests;
 use App\User;
 use Illuminate\Database\Eloquent;
@@ -18,7 +19,13 @@ class Main extends Controller{
         $book = BookModel::orderBy('book_id', 'desc')
             ->first();
 
-        return view('welcome', ['reader' => $reader, 'book' => $book]);
+
+        $comment = CommentModel::orderBy('comment_id', 'desc')
+            ->take(3)
+            ->get();
+        
+
+        return view('welcome', ['reader' => $reader, 'book' => $book, 'comment' => $comment]);
     }
 }
 

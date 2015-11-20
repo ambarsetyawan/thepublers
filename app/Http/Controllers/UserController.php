@@ -2,6 +2,7 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use Illuminate\Auth\Guard;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Requests\SignupRequest;
@@ -15,6 +16,19 @@ use Session;
 
 class UserController extends Controller
 {
+
+    protected $auth;
+
+    public function __construct(Guard $auth)
+    {
+        $this->auth = $auth;
+
+        $this->middleware('auth', ['except' => ['index', 'store']]);
+        $this->middleware('auth.access', ['only' => ['index']]);
+        $this->middleware('check.user.id', ['only' => ['show', 'edit']]);
+        $this->middleware('logout', ['only' => ['logout']]);
+    }
+
 
     public function index()
     {
@@ -47,10 +61,6 @@ class UserController extends Controller
     public function show($id)
     {
         $get_user = User::where('user_id', $id)->first();
-        if(is_null($get_user)){
-            return Redirect::to('/');
-        }
-
         return view('user.show', ['get_user' => $get_user]);
     }
 
@@ -58,10 +68,6 @@ class UserController extends Controller
     public function edit($id)
     {
         $edit_user = User::where('user_id', $id)->first();
-        if(is_null($edit_user)){
-            return Redirect::to('/');
-        }
-
         return view('user.edit', ['edit_user' => $edit_user]);
     }
 
@@ -102,10 +108,8 @@ class UserController extends Controller
     }
 
 
-    public function getLogout()
+    public function logout()
     {
-        Auth::logout();
-        Session::flush();
-        return Redirect::to('/')->with('message', 'Your are now logged out!');
+        $this->auth->logout();
     }
 }

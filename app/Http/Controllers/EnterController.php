@@ -2,13 +2,22 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Auth\Guard;
 use Illuminate\Http\Request;
 use App\Http\Requests;
-use Auth;
 
 
 class EnterController extends Controller
 {
+
+    protected $auth;
+
+    public function __construct(Guard $auth)
+    {
+        $this->middleware('auth.access', ['only' => ['index']]);
+        $this->auth = $auth;
+    }
+
 
     public function index()
     {
@@ -18,11 +27,12 @@ class EnterController extends Controller
 
     public function enter(Request $request)
     {
-        if(Auth::attempt(['user_email' => $request->user_email, 'password' => $request->user_password], true))
-        {
-            echo Auth::user()->user_firstname;
+        $auth = $this->auth->attempt(['user_email' => $request->user_email, 'password' => $request->user_password], true);
+        if(!$auth){
+            return redirect('/login')->withErrors('Проверьте правильность ввода данных');
         }else{
-            echo redirect('/');
+            return redirect('/');
         }
+
     }
 }
