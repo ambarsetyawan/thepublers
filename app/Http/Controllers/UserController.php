@@ -11,8 +11,7 @@ use Intervention\Image\ImageManagerStatic as Image;
 use Redirect;
 use File;
 use Hash;
-use Auth;
-use Session;
+
 
 class UserController extends Controller
 {
@@ -60,14 +59,14 @@ class UserController extends Controller
 
     public function show($id)
     {
-        $get_user = User::where('user_id', $id)->first();
+        $get_user = User::find($id);
         return view('user.show', ['get_user' => $get_user]);
     }
 
 
     public function edit($id)
     {
-        $edit_user = User::where('user_id', $id)->first();
+        $edit_user = User::find($id);
         return view('user.edit', ['edit_user' => $edit_user]);
     }
 

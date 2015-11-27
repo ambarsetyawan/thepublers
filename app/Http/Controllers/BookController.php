@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\CommentModel;
+use App\User;
+use Illuminate\Auth\Guard;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Requests\BookRequest;
@@ -10,11 +13,14 @@ use Intervention\Image\ImageManagerStatic as Image;
 use Redirect;
 use Illuminate\Support\Facades\File;
 
+
 class BookController extends Controller
 {
+    protected $auth;
 
-    public function __construct()
+    public function __construct(Guard $auth)
     {
+        $this->auth = $auth;
         $this->middleware('book.auth', ['except' => ['show']]);
     }
 
@@ -41,6 +47,7 @@ class BookController extends Controller
 
         $book = new BookModel($request->all());
         $book->book_cover = $book_cover->basePath();
+        $book->book_user_id = $this->auth->id();
         $book->save();
 
         return Redirect::to('/');
@@ -49,21 +56,28 @@ class BookController extends Controller
 
     public function show($id)
     {
-        $book = BookModel::where('book_id', $id)
-            ->first();
+        $book = BookModel::find($id);
+        $count = CommentModel::where('comment_book_id', $id)->count();
+        $get_user = BookModel::where('book_user_id', $this->auth->id())->first();
 
-        if(is_null($book)){
+        $comment = User::leftJoin('comment', 'user.user_id', '=', 'comment.comment_user_id')
+            ->leftJoin('book', 'book.book_id', '=', 'comment.comment_book_id')
+            ->where('book.book_id', $id)
+            ->get();
+
+
+        if (is_null($book)) {
             return Redirect::to('/');
         }
 
-        return view('book.show', ['book' => $book]);
+        return view('book.show', ['book' => $book, 'count' => $count, 'comment' => $comment, 'get_user' => $get_user]);
     }
 
 
     public function edit($id)
     {
-        $book_edit = BookModel::where('book_id', $id)->first();
-        if(is_null($book_edit)){
+        $book_edit = BookModel::find($id);
+        if (is_null($book_edit)) {
             return Redirect::to('/');
         }
 

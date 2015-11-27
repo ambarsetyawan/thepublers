@@ -8,7 +8,7 @@ class User extends Migration{
     public function up()
     {
         Schema::create('user', function (Blueprint $table) {
-            $table->increments('user_id');
+            $table->increments('user_id')->unsigned()->index();
             $table->string('user_firstname', 32);
             $table->string('user_lastname', 32);
             $table->string('user_email', 32)->unique();
@@ -21,6 +21,7 @@ class User extends Migration{
             $table->string('remember_token', 128)->default('');
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->engine = 'InnoDB';
 
         });
     }

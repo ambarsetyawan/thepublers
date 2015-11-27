@@ -2,10 +2,10 @@
 namespace App\Http\Controllers;
 
 use App\BookModel;
-use App\CommentModel;
 use App\Http\Requests;
 use App\User;
 use Illuminate\Database\Eloquent;
+use DB;
 
 class Main extends Controller{
 
@@ -20,10 +20,11 @@ class Main extends Controller{
             ->first();
 
 
-        $comment = CommentModel::orderBy('comment_id', 'desc')
+        $comment = User::leftJoin('comment', 'user.user_id', '=', 'comment.comment_user_id')
+            ->orderBy('comment.comment_user_id', 'desc')
             ->take(3)
             ->get();
-        
+
 
         return view('welcome', ['reader' => $reader, 'book' => $book, 'comment' => $comment]);
     }

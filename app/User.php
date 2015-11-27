@@ -20,6 +20,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     protected $primaryKey = 'user_id';
     protected $fillable = ['user_firstname', 'user_lastname', 'user_email'];
 
+
     public function getAuthPassword()
     {
         return $this->user_password;

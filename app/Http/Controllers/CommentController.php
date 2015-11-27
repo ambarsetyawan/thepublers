@@ -41,17 +41,17 @@ class CommentController extends Controller
             ->where('user_email', $this->auth->user()->user_email)
             ->first();
 
-        $comment->comment_post_id = $request->route()->parameter('book');
-        $comment->comment_author = $comment_user->user_id;
+        $comment->comment_book_id = $request->route()->parameter('book');
+        $comment->comment_user_id = $comment_user->user_id;
         $comment->comment_rating = $request->input('comment_rating');
         $comment->comment_text = $request->input('comment_text');
         $comment->save();
     }
 
 
-    public function show($id)
+    public function show($book_id, $comment_id)
     {
-        //
+       return 'show ' . $book_id . ' comment ' . $comment_id;
     }
 
 
