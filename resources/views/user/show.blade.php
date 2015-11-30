@@ -28,7 +28,11 @@
             <li>
                 <ul class="cols">
                     <li>Email:</li>
-                    <li>{{ $get_user->user_email }}</li>
+                    <li>
+                        @if(Auth::id() == $get_user->user_id)
+                            {{ $get_user->user_email }}
+                        @endif
+                    </li>
                 </ul>
             </li>
             <li>
@@ -63,16 +67,14 @@
             </li>
             <li>
                 <ul class="cols">
-                    @if(Auth::check() && $get_user->book_user_id == Auth::id())
-                        <li><a href="/user/{{$get_user->user_id }}/edit" class="admin_link">Редактировать</a></li>
-                        <li>
-                            <form action="" method="POST">
-                                <input type="hidden" name="_method" value="DELETE">
-                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                <input type="submit" value="Удалить аккаунт">
-                            </form>
-                        </li>
-                    @endif
+                    <li><a href="/user/{{$get_user->user_id }}/edit" class="admin_link">Редактировать</a></li>
+                    <li>
+                        <form action="" method="POST">
+                            <input type="hidden" name="_method" value="DELETE">
+                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                            <input type="submit" value="Удалить аккаунт">
+                        </form>
+                    </li>
                 </ul>
             </li>
         </ul>

@@ -20,13 +20,17 @@ class Main extends Controller{
             ->first();
 
 
+        $latest_book = BookModel::orderBy('book_id', 'desc')
+            ->get()
+            ->take(4);
+
         $comment = User::leftJoin('comment', 'user.user_id', '=', 'comment.comment_user_id')
             ->orderBy('comment.comment_user_id', 'desc')
             ->take(3)
             ->get();
 
 
-        return view('welcome', ['reader' => $reader, 'book' => $book, 'comment' => $comment]);
+        return view('welcome', ['latest_book' => $latest_book, 'reader' => $reader, 'book' => $book, 'comment' => $comment]);
     }
 }
 

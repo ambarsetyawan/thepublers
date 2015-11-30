@@ -22,6 +22,7 @@ class BookController extends Controller
     {
         $this->auth = $auth;
         $this->middleware('book.auth', ['except' => ['show']]);
+        $this->middleware('book.find', ['only' => ['show', 'edit']]);
     }
 
 
@@ -60,27 +61,33 @@ class BookController extends Controller
         $count = CommentModel::where('comment_book_id', $id)->count();
         $get_user = BookModel::where('book_user_id', $this->auth->id())->first();
 
-        $comment = User::leftJoin('comment', 'user.user_id', '=', 'comment.comment_user_id')
+        $comment = CommentModel::leftJoin('user', 'user.user_id', '=', 'comment.comment_user_id')
             ->leftJoin('book', 'book.book_id', '=', 'comment.comment_book_id')
             ->where('book.book_id', $id)
             ->get();
-
-
-        if (is_null($book)) {
-            return Redirect::to('/');
-        }
 
         return view('book.show', ['book' => $book, 'count' => $count, 'comment' => $comment, 'get_user' => $get_user]);
     }
 
 
+
+    public function remove_comment($id, $comment_book_id)
+    {
+        CommentModel::leftJoin('user', 'user.user_id', '=', 'comment.comment_user_id')
+            ->leftJoin('book', 'book.book_id', '=', 'comment.comment_book_id')
+            ->where('book.book_id', $id)
+            ->where('comment.comment_book_id', $comment_book_id)
+            ->first()
+            ->delete();
+
+        return redirect()->back();
+    }
+
+
+
     public function edit($id)
     {
         $book_edit = BookModel::find($id);
-        if (is_null($book_edit)) {
-            return Redirect::to('/');
-        }
-
         return view('book.edit', ['book_edit' => $book_edit]);
     }
 
@@ -119,4 +126,5 @@ class BookController extends Controller
 
         return Redirect::to('/');
     }
+
 }

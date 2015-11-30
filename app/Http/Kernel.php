@@ -23,7 +23,7 @@ class Kernel extends HttpKernel
         'book.auth' => \App\Http\Middleware\BookAuthenticate::class,
         'check.user.id' => \App\Http\Middleware\CheckShowAndEditUserExist::class,
         'logout' => \App\Http\Middleware\UserLogout::class,
-
+        'book.find' => \App\Http\Middleware\BookFind::class,
         'auth.enter' => \App\Http\Middleware\RedirectIfAuthenticated::class,
 
 //        'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,

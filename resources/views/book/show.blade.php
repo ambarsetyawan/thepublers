@@ -6,19 +6,17 @@
 
     <div class="book_desc">
         <ul class="cols">
-            @if(Auth::check() && $get_user->book_user_id == Auth::id())
-                <li>
-                    <a href="{{ asset('book/' . $book->book_id . '/edit') }}" class="admin_link">Редактировать
-                        книгу</a>
-                </li>
-                <li>
-                    <form action="" method="POST">
-                        <input type="hidden" name="_method" value="DELETE">
-                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                        <input type="submit" value="Удалить книгу">
-                    </form>
-                </li>
-            @endif
+            <li>
+                <a href="{{ asset('book/' . $book->book_id . '/edit') }}" class="admin_link">Редактировать
+                    книгу</a>
+            </li>
+            <li>
+                <form action="" method="POST">
+                    <input type="hidden" name="_method" value="DELETE">
+                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                    <input type="submit" value="Удалить книгу">
+                </form>
+            </li>
         </ul>
         <ul class="cols">
             <li>
@@ -43,11 +41,13 @@
                         <br><br>
                     @else
                         <h4>Отзывов к данной книге нет</h4>
+                        <a href="{{ Request::url() }}/comment">Добавить комментарий</a>
                     @endif
                     <br>
                     <ul class="cols">
                         @foreach($comment as $feedback)
                             <li>
+
                                 <ul class="cols">
                                     <li><img src="/{{ $feedback->user_cover_address }}"
                                              alt="{{ $feedback->user_firstname }} {{ $feedback->user_lastname }}"
@@ -57,6 +57,14 @@
                                         <a href="/user/{{ $feedback->user_id }}">{{ $feedback->user_firstname }} {{ $feedback->user_lastname }}</a><br>
                                         <span>Рейтинг: {{ $feedback->comment_rating }}</span><br>
                                         {{ $feedback->comment_text }}
+                                    </li>
+                                    <li>
+                                        <form action="/book/{{ $feedback->book_id }}/comment/{{ $feedback->comment_id }}"
+                                              method="POST">
+                                            <input type="hidden" name="_method" value="DELETE">
+                                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                            <input type="submit" value="Удалить">
+                                        </form>
                                     </li>
                                 </ul>
                             </li>

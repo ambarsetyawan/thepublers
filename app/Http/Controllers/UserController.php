@@ -12,7 +12,6 @@ use Redirect;
 use File;
 use Hash;
 
-
 class UserController extends Controller
 {
 
@@ -41,9 +40,8 @@ class UserController extends Controller
     }
 
 
-    public function store(Request $request)
+    public function store(Request $request, SignupRequest $rules)
     {
-        $rules = new SignupRequest();
         $this->validate($request, $rules->rules());
 
         $user_cover = Image::make($request->file('user_cover_address'))
@@ -54,6 +52,8 @@ class UserController extends Controller
         $user->user_password = Hash::make($request->user_password);
         $user->user_cover_address = $user_cover->basePath();
         $user->save();
+
+        return Redirect::to('/');
     }
 
 
@@ -71,9 +71,8 @@ class UserController extends Controller
     }
 
 
-    public function update(Request $request, $id)
+    public function update(Request $request, UserRequest $rules, $id)
     {
-        $rules = new UserRequest();
         $this->validate($request, $rules->rules());
 
         $user_cover = Image::make($request->file('user_cover_address'))
@@ -97,10 +96,7 @@ class UserController extends Controller
 
     public function destroy($id)
     {
-        $user_cover = User::select('user_cover_address')
-            ->where('user_id', $id)
-            ->first();
-
+        $user_cover = User::find($id);
         User::where('user_id', $id)->first()->delete();
         File::delete(public_path($user_cover->user_cover_address));
         return Redirect::to('/');

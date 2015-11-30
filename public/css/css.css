@@ -1,5 +1,5 @@
 @import url(https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700,700italic&subset=latin,cyrillic-ext,latin-ext,cyrillic);
-*{border:0px; padding:0px; margin:0px; outline-style:none; vertical-align:baseline; -webkit-text-size-adjust:none; -moz-text-size-adjust:none; -ms-text-size-adjust:none; text-size-adjust:none; box-sizing:border-box; -moz-box-sizing:border-box; -webkit-box-sizing:border-box;}
+*{border:0px; padding:0px; margin:0px; outline-style:none; vertical-align:baseline; -webkit-text-size-adjust:none; -moz-text-size-adjust:none; -ms-text-size-adjust:none; text-size-adjust:none; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box;}
 body {position:relative; font-family:"PT Sans", sans-serif;; color:#333333; font-weight:normal; letter-spacing:-0.4px; background:#fff;}
 
 html{height:100%; min-width:980px; color:#565656; font-size:14px;}
@@ -62,14 +62,13 @@ div.user_info > ul.cols > li {border-bottom:1px solid #e7e7e7;}
 div.start > ul.cols > li:first-child > ul.cols {padding:42px 0px; border:1px solid #e7e7e7;}
 div.start > ul.cols > li:first-child > ul.cols > li {display:block; text-align:center;}
 div.start > ul.cols > li:nth-child(3) {position:relative; width:450px;}
-div.start > ul.cols > li:nth-child(3) a.book_title {position:absolute; top:0; left:0; margin:10px; display:inline-block; padding:5px 10px; background:#f1afa6;
+div.start > ul.cols > li:nth-child(3) a.book_title {position:absolute; top:0; left:0; margin:45px 10px 10px 10px; display:inline-block; padding:5px 10px; background:#f1afa6;
     color: #fff; font-size:20px;}
 
 
 
 .book_start {text-align:center;}
 h3 > a {font-size:30px;}
-
 
 .login > form > ul.cols > li {display:block;}
 
@@ -85,7 +84,6 @@ h3 > a {font-size:30px;}
 .feedback > ul.cols > li > ul.cols > li span {display:inline-block; margin-bottom:10px;}
 .feedback > ul.cols > li {margin-bottom:50px;}
 
-
 .comment h4 {display:inline-block; padding:10px; background:#fbec47;}
 .comment > ul.cols > li {display:block;}
 .comment > ul.cols > li {border-bottom: 1px dashed #B0BEC5; padding:30px 0px;}
@@ -93,3 +91,12 @@ h3 > a {font-size:30px;}
 .comment > ul.cols > li > ul.cols > li:first-child {width:100px;}
 .comment > ul.cols > li > ul.cols > li span {margin-top:15px; display:inline-block; font-size:16px;}
 
+.last_book {margin-top:50px;}
+.last_book > table {table-layout:fixed !important;}
+.last_book > table > tbody > tr  > td {width:230px !important;}
+.last_book > table > tbody > tr  > td {padding-right:40px; box-sizing:border-box;}
+.last_book > table > tbody > tr  > td img {margin-bottom:20px;}
+.last_book > table > tbody > tr  > td a {line-height:1;}
+
+.search ul.cols {margin-bottom:30px;}
+.search ul.cols > li label {margin:0;}

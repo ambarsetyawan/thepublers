@@ -4,7 +4,6 @@
 
     @include('header.header')
 
-
     <form action="/book/{{ $book_edit->book_id }}" method="POST" enctype="multipart/form-data">
         {{ csrf_field() }}
         {{ method_field('PATCH') }}

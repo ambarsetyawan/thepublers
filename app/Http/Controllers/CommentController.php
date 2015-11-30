@@ -8,6 +8,7 @@ use Illuminate\Auth\Guard;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Requests\CommentRequest;
+use Redirect;
 
 class CommentController extends Controller
 {
@@ -16,6 +17,7 @@ class CommentController extends Controller
     public function __construct(Guard $auth)
     {
         $this->auth = $auth;
+        $this->middleware('auth', ['only' => ['index']]);
     }
 
 
@@ -32,7 +34,7 @@ class CommentController extends Controller
     }
 
 
-    public function store(Request $request, CommentModel $comment, CommentRequest $rules)
+    public function store(Request $request, CommentModel $comment, CommentRequest $rules, $book_id)
     {
 
         $this->validate($request, $rules->rules());
@@ -46,12 +48,14 @@ class CommentController extends Controller
         $comment->comment_rating = $request->input('comment_rating');
         $comment->comment_text = $request->input('comment_text');
         $comment->save();
+
+        return Redirect::to('/book/' . $book_id);
     }
 
 
-    public function show($book_id, $comment_id)
+    public function show($id)
     {
-       return 'show ' . $book_id . ' comment ' . $comment_id;
+        //
     }
 
 
@@ -67,8 +71,13 @@ class CommentController extends Controller
     }
 
 
-    public function destroy($id)
+    public function destroy($id, $comment_id)
     {
-        //
+        CommentModel::where('comment_book_id', $id)
+            ->where('comment_id', $comment_id)
+            ->first()
+            ->delete();
+
+        return redirect()->to('/book/' . $id);
     }
 }

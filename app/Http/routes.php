@@ -1,5 +1,7 @@
 <?php
 
+use App\CommentModel;
+
 // Authentication routes
 Route::get('login', 'EnterController@index');
 Route::post('login', 'EnterController@enter');
@@ -10,6 +12,7 @@ Route::get('/', 'Main@index');
 // CRUD book routes
 Route::resource('book', 'BookController');
 
+
 // CRUD comment routes
 Route::resource('book.comment', 'CommentController');
 
@@ -18,3 +21,6 @@ Route::resource('user', 'UserController');
 
 // Logout
 Route::get('/logout', 'UserController@logout');
+
+// Search field
+Route::match(['get', 'post'], 'search', 'SearchController@search');

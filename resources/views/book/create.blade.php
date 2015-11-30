@@ -1,11 +1,8 @@
 <link rel="stylesheet" href="{{ asset("css/css.css") }}">
 
-@extends('header.header')
-
 <div class="wrapper">
 
     @include('header.header')
-
 
     <form action="/book" method="POST" enctype="multipart/form-data">
         {{ csrf_field() }}
