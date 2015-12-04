@@ -1,12 +1,16 @@
-<link rel="stylesheet" href="{{ asset("css/css.css") }}">
+<!doctype html>
+<html lang="en">
+<head>
+    <title>the Publers</title>
+    @include('header.top')
+</head>
+<body>
 
 <div class="wrapper">
 
     @include('header.header')
 
-    <form action="/book/{{ $book_edit->book_id }}" method="POST" enctype="multipart/form-data">
-        {{ csrf_field() }}
-        {{ method_field('PATCH') }}
+    <form action="/book/{{ $book_edit->slug }}" method="POST" enctype="multipart/form-data">
         <input name="_method" type="hidden" value="PATCH">
         <input type="hidden" name="_token" value="{{ csrf_token() }}">
 

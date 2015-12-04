@@ -145,8 +145,10 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
-        Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
         'Intervention\Image\ImageServiceProvider',
+        'Zizaco\Entrust\EntrustServiceProvider',
+        Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
+        'Cviebrock\EloquentSluggable\SluggableServiceProvider'
     ],
 
     /*
@@ -196,6 +198,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View'      => Illuminate\Support\Facades\View::class,
         'Image' => 'Intervention\Image\Facades\Image',
+        'Entrust' => 'Zizaco\Entrust\EntrustFacade'
     ],
 
 ];

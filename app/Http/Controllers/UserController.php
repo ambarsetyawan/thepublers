@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers;
 
 use App\User;
@@ -60,7 +61,9 @@ class UserController extends Controller
     public function show($id)
     {
         $get_user = User::find($id);
-        return view('user.show', ['get_user' => $get_user]);
+        $user = User::select('user_id')->where('user_id', $id)->first();
+
+        return view('user.show', ['get_user' => $get_user, 'user' => $user]);
     }
 
 

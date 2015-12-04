@@ -1,21 +1,29 @@
-<link rel="stylesheet" href="{{ asset("css/css.css") }}">
+<!doctype html>
+<html lang="en">
+<head>
+    <title>the Publers</title>
+    @include('header.top')
+</head>
+<body>
 
 <div class="wrapper">
-
     @include('header.header')
-
     <div class="book_desc">
         <ul class="cols">
             <li>
-                <a href="{{ asset('book/' . $book->book_id . '/edit') }}" class="admin_link">Редактировать
-                    книгу</a>
+                @if(Entrust::hasRole('admin'))
+                    <a href="{{ asset('book/' . $book->slug . '/edit') }}" class="admin_link">Редактировать
+                        книгу</a>
+                @endif
             </li>
             <li>
-                <form action="" method="POST">
-                    <input type="hidden" name="_method" value="DELETE">
-                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                    <input type="submit" value="Удалить книгу">
-                </form>
+                @if(Entrust::hasRole('admin'))
+                    <form action="" method="POST">
+                        <input type="hidden" name="_method" value="DELETE">
+                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                        <input type="submit" value="Удалить книгу">
+                    </form>
+                @endif
             </li>
         </ul>
         <ul class="cols">
@@ -29,7 +37,7 @@
                     <li><h3>{{ $book->book_title }}</h3></li>
                     <li><span>Автор:</span> <a href="">{{ $book->book_author }}</a></li>
                     <li><span>Год издания:</span> {{ $book->book_year }}</li>
-                    <li><span>Категория:</span> <a href="">{{ $book->book_category }}</a></li>
+                    <li><span>Категория: </span><a href="/category/{{ $category->slug }}">{{ $category->category_name }}</a></li>
                     <li><span>Описание: {{ $book->book_text }}</span></li>
                 </ul>
                 <br><br>
@@ -38,12 +46,11 @@
                     @if($count != 0)
                         <h4>Отзывов: {{ $count }}</h4>
                         <a href="{{ Request::url() }}/comment">Добавить комментарий</a>
-                        <br><br>
                     @else
                         <h4>Отзывов к данной книге нет</h4>
                         <a href="{{ Request::url() }}/comment">Добавить комментарий</a>
                     @endif
-                    <br>
+                    <br><br>
                     <ul class="cols">
                         @foreach($comment as $feedback)
                             <li>
@@ -59,12 +66,14 @@
                                         {{ $feedback->comment_text }}
                                     </li>
                                     <li>
-                                        <form action="/book/{{ $feedback->book_id }}/comment/{{ $feedback->comment_id }}"
-                                              method="POST">
-                                            <input type="hidden" name="_method" value="DELETE">
-                                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                            <input type="submit" value="Удалить">
-                                        </form>
+                                        @if(Entrust::hasRole('admin'))
+                                            <form action="/book/{{ $feedback->slug }}/comment/{{ $feedback->comment_id }}"
+                                                  method="POST">
+                                                <input type="hidden" name="_method" value="DELETE">
+                                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                                <input type="submit" value="Удалить">
+                                            </form>
+                                        @endif
                                     </li>
                                 </ul>
                             </li>

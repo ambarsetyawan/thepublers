@@ -1,11 +1,12 @@
 <?php
+
 namespace App\Http\Controllers;
 
 use App\BookModel;
 use App\Http\Requests;
+use App\QuoteModel;
 use App\User;
 use Illuminate\Database\Eloquent;
-use DB;
 
 class Main extends Controller{
 
@@ -29,8 +30,11 @@ class Main extends Controller{
             ->take(3)
             ->get();
 
+        $quote = QuoteModel::orderBy('quote_id', 'desc')
+            ->take(1)
+            ->first();
 
-        return view('welcome', ['latest_book' => $latest_book, 'reader' => $reader, 'book' => $book, 'comment' => $comment]);
+        return view('welcome', ['quote' => $quote, 'latest_book' => $latest_book, 'reader' => $reader, 'book' => $book, 'comment' => $comment]);
     }
 }
 

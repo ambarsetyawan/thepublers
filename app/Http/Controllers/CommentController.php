@@ -1,7 +1,7 @@
 <?php
-
 namespace App\Http\Controllers;
 
+use App\BookModel;
 use App\CommentModel;
 use App\User;
 use Illuminate\Auth\Guard;
@@ -34,7 +34,7 @@ class CommentController extends Controller
     }
 
 
-    public function store(Request $request, CommentModel $comment, CommentRequest $rules, $book_id)
+    public function slug(Request $request, CommentModel $comment, CommentRequest $rules, $slug)
     {
 
         $this->validate($request, $rules->rules());
@@ -43,14 +43,17 @@ class CommentController extends Controller
             ->where('user_email', $this->auth->user()->user_email)
             ->first();
 
-        $comment->comment_book_id = $request->route()->parameter('book');
+        $book_id = BookModel::whereSlug($slug)->first();
+
+        $comment->comment_book_id = $book_id->book_id;
         $comment->comment_user_id = $comment_user->user_id;
         $comment->comment_rating = $request->input('comment_rating');
         $comment->comment_text = $request->input('comment_text');
         $comment->save();
 
-        return Redirect::to('/book/' . $book_id);
+        return Redirect::to('/book/' . $slug);
     }
+
 
 
     public function show($id)
@@ -71,13 +74,15 @@ class CommentController extends Controller
     }
 
 
-    public function destroy($id, $comment_id)
+    public function destroy($slug, $comment_id)
     {
-        CommentModel::where('comment_book_id', $id)
+
+        $book = BookModel::whereSlug($slug)->first();
+        CommentModel::where('comment_book_id', $book->book_id)
             ->where('comment_id', $comment_id)
             ->first()
             ->delete();
 
-        return redirect()->to('/book/' . $id);
+        return redirect()->to('/book/' . $slug);
     }
 }

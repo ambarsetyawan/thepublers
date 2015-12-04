@@ -9,12 +9,12 @@
 <div class="wrapper">
     @include('header.header')
     <div class="wrapper">
-        <h3>Поиск</h3>
+        <h3>Книги в категории</h3>
         <div class="container">
             <ul class="cols">
                 <?php $count = 0; ?>
                 <li class="tr">
-                    @foreach ($search_book as $book)
+                    @foreach ($sort_book as $book)
                         <?php ++$count; ?>
                         @if($count % 5 == 0)
                 </li>

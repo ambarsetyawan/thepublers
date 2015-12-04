@@ -11,6 +11,7 @@
             @endforeach
         </ul>
     </div>
+    <h3>Регистрация</h3>
     <form method="POST" action="" enctype="multipart/form-data">
         {!! csrf_field() !!}
         <label for="user_cover_address">Обложка:

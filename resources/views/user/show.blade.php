@@ -5,6 +5,7 @@
     @include('header.header')
 
     <div class="user_info">
+        <h3>Профиль пользователя</h3>
         <ul class="cols">
             <li>
                 <ul class="cols">
@@ -29,7 +30,7 @@
                 <ul class="cols">
                     <li>Email:</li>
                     <li>
-                        @if(Auth::id() == $get_user->user_id)
+                        @if(Entrust::hasRole('admin') || Auth::user()->user_id == $user->user_id)
                             {{ $get_user->user_email }}
                         @endif
                     </li>
@@ -67,13 +68,19 @@
             </li>
             <li>
                 <ul class="cols">
-                    <li><a href="/user/{{$get_user->user_id }}/edit" class="admin_link">Редактировать</a></li>
                     <li>
-                        <form action="" method="POST">
-                            <input type="hidden" name="_method" value="DELETE">
-                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                            <input type="submit" value="Удалить аккаунт">
-                        </form>
+                        @if(Entrust::hasRole('admin') || Auth::user()->user_id == $user->user_id)
+                            <a href="/user/{{$get_user->user_id }}/edit" class="admin_link">Редактировать</a>
+                        @endif
+                    </li>
+                    <li>
+                        @if(Entrust::hasRole('admin') || Auth::user()->user_id == $user->user_id)
+                            <form action="" method="POST">
+                                <input type="hidden" name="_method" value="DELETE">
+                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                <input type="submit" value="Удалить аккаунт">
+                            </form>
+                        @endif
                     </li>
                 </ul>
             </li>

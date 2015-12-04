@@ -22,14 +22,11 @@ class SignupRequest extends Request {
         ];
     }
 
+
     public function messages()
     {
         return [
-            'user_firstname.required' => 'Имя должно быть заполнено и быть больше 3 символов',
-            'user_lastname.required'  => 'Фамилия должна быть заполнена и быть больше 3 символов',
-            'user_email.required'  => 'Email указан не верно, или пользователь с таким email существует',
-            'user_password.required'  => 'Пароль должен быть заполнен и быть больше 3 символов',
-            'user_cover_address.required'  => 'Обложка должна быть в формате: jpeg, jpg, png, gif',
+
         ];
     }
 }

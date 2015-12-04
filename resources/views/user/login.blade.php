@@ -1,4 +1,10 @@
-<link rel="stylesheet" href="{{ asset("css/css.css") }}">
+<!doctype html>
+<html lang="en">
+<head>
+    <title>the Publers</title>
+    @include('header.top')
+</head>
+<body>
 
 <div class="wrapper">
     <div class="header">
@@ -22,6 +28,7 @@
         </ul>
     </div>
     <div class="login">
+        <h3>Авторизация</h3>
         <form action="/login" method="post" enctype="multipart/form-data">
             {{ csrf_field() }}
             <input type="hidden" name="_token" value="{{ csrf_token() }}"/>

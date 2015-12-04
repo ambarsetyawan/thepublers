@@ -14,7 +14,6 @@ class EnterController extends Controller
 
     public function __construct(Guard $auth)
     {
-        $this->middleware('auth.access', ['only' => ['index']]);
         $this->auth = $auth;
     }
 

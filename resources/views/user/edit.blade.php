@@ -3,7 +3,7 @@
 <div class="wrapper">
 
     @include('header.header')
-
+    <h3>Редактировать пользователя</h3>
     <form action="/user/{{ $edit_user->user_id }}" method="POST" enctype="multipart/form-data">
         {{ csrf_field() }}
         {{ method_field('PATCH') }}

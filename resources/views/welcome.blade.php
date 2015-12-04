@@ -1,19 +1,13 @@
-<link rel="stylesheet" href="{{ asset("css/css.css") }}">
+<!doctype html>
+<html lang="en">
+<head>
+    <title>the Publers</title>
+    @include('header.top')
+</head>
+<body>
 
 <div class="wrapper">
     @include('header.header')
-    <div class="search">
-        <form action="/search" method="post" enctype="multipart/form-data">
-            <input type="hidden" name="_token" value="{{ csrf_token() }}">
-            <ul class="cols">
-                <li>
-                    <label for="search">
-                        <input type="search" name="search" placeholder="Поиск по книгам">
-                    </label>
-                </li>
-            </ul>
-        </form>
-    </div>
     <div class="start">
         <ul class="cols">
             <li>
@@ -31,15 +25,34 @@
                         </li>
                     </ul>
                 @endif
+                <div class="quotes">
+                    <h3>Цитаты писателей</h3>
+                    @if(Entrust::hasRole('admin'))
+                        <small><a href="/quote">Создать</a></small>,
+                    @endif
+                    @if(!is_null($quote))
+                        @if(Entrust::hasRole('admin'))
+                            <small><a href="/quote/{{ $quote->quote_id }}/edit">Редактировать</a></small><br>
+                        @endif
+                        <ul class="cols">
+                            <li>
+                                <span>{{ $quote->quote_author }}</span><br>
+                                <i>{{ $quote->quote_text }}</i>
+                            </li>
+                        </ul>
+                        <img src="/img/quote.png" alt="">
+                    @endif
+                </div>
             </li>
             <li class="blank"></li>
             <li>
                 <h3>Новинка</h3>
                 @if(!is_null($book))
-                    <a href="/book/{{ $book->book_id }}" class="book_title">{{ $book->book_title }}</a>
-                    <a href="/book/{{ $book->book_id }}"><img src="/{{ $book->book_cover }}"
+                    <a href="/book/{{ $book->slug }}" class="book_title">{{ $book->book_title }}</a>
+                    <a href="/book/{{ $book->slug }}"><img src="/{{ $book->book_cover }}"
                                                               alt="{{ $book->book_title }}"
-                                                              title="{{ $book->book_title }}"></a>
+                                                              title="{{ $book->book_title }}"><img
+                                src="{{ '/img/view.png' }}" alt="" class="view"></a>
                 @endif
             </li>
             <li class="blank"></li>
@@ -77,9 +90,7 @@
             <tr>
                 @foreach($latest_book as $latest)
                     <td>
-                        <a href="/book/{{ $latest->book_id }}">
-                            <img src="/{{ $latest->book_cover }}"
-                                 alt="{{ $latest->book_title }}"
+                        <a href="/book/{{ $latest->book_id }}"><img src="/{{ $latest->book_cover }}" alt="{{ $latest->book_title }}"
                                  title="{{ $latest->book_title }}" width="200"
                                  height="auto"><br>{{ $latest->book_title }}
                         </a>
