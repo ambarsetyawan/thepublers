@@ -147,7 +147,6 @@ return [
 
         'Intervention\Image\ImageServiceProvider',
         'Zizaco\Entrust\EntrustServiceProvider',
-        Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
         'Cviebrock\EloquentSluggable\SluggableServiceProvider'
     ],
 
