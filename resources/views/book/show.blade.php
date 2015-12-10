@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <title>the Publers</title>
+    <title>the Publers — {{ $book->book_title }}</title>
     @include('header.top')
 </head>
 <body>
@@ -35,7 +35,7 @@
             <li>
                 <ul class="cols">
                     <li><h3>{{ $book->book_title }}</h3></li>
-                    <li><span>Автор:</span> <a href="">{{ $book->book_author }}</a></li>
+                    <li><span>Автор: {{ $book->book_author }}</span></li>
                     <li><span>Год издания:</span> {{ $book->book_year }}</li>
                     <li><span>Категория: </span><a href="/category/{{ $category->slug }}">{{ $category->category_name }}</a></li>
                     <li><span>Описание: {{ $book->book_text }}</span></li>
@@ -83,4 +83,5 @@
             </li>
         </ul>
     </div>
+    @include('footer.footer')
 </div>

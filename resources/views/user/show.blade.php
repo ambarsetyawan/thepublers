@@ -1,9 +1,13 @@
-<link rel="stylesheet" href="{{ asset("css/css.css") }}">
+<!doctype html>
+<html lang="en">
+<head>
+    <title>the Publers — {{ $get_user->user_firstname }} {{ $get_user->user_lastname }} </title>
+    @include('header.top')
+</head>
+<body>
 
 <div class="wrapper">
-
     @include('header.header')
-
     <div class="user_info">
         <h3>Профиль пользователя</h3>
         <ul class="cols">
@@ -86,4 +90,5 @@
             </li>
         </ul>
     </div>
+    @include('footer.footer')
 </div>

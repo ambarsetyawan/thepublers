@@ -26,13 +26,16 @@ Route::get('/logout', 'UserController@logout');
 // Search field
 Route::match(['get', 'post'], 'search', 'SearchController@search');
 
-//Quote
+
+//Category, Quote
+Route::get('category/all', 'CategoryController@all');
+Route::get('category/{slug}', 'CategoryController@show');
+
+
 Route::group(['middleware' => 'auth'], function () {
+    Route::resource('category', 'CategoryController');
+
+    Route::get('quote/all', 'QuoteController@all');
     Route::resource('quote', 'QuoteController');
 });
 
-//Category
-Route::group(['middleware' => 'auth'], function () {
-    Route::get('category/all', 'CategoryController@all');
-    Route::resource('category', 'CategoryController');
-});

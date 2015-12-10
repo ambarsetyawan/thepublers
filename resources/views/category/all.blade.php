@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <title>the Publers</title>
+    <title>the Publers — Все категории</title>
     @include('header.top')
 </head>
 <body>
@@ -10,11 +10,11 @@
     @include('header.header')
     <div class="login">
         <a href="{{ '/category' }}">Добавить категорию</a>
-        <h3>Все категории</h3><br><br>
+        <h3>Все категории</h3>
         @foreach($category as $content)
-            <ul class="cols">
+            <ul class="cols category">
                 <li>
-                    {{ $content->category_name  }}
+                    <span>{{ $content->category_name  }}</span>
                 </li>
                 <li>
                     <a href="{{ $content->slug  }}/edit">Редактировать</a>
@@ -29,4 +29,5 @@
             </ul>
         @endforeach
     </div>
+    @include('footer.footer')
 </div>

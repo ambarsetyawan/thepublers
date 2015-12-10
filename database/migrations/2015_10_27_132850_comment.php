@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Carbon\Carbon;
 
 class Comment extends Migration {
 
@@ -18,8 +19,8 @@ class Comment extends Migration {
 
             $table->integer('comment_rating')->default(1);
             $table->string('comment_text', 256);
-            $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
-            $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestamp('created_at')->default(Carbon::now('Europe/Minsk'));
+            $table->timestamp('updated_at')->default(Carbon::now('Europe/Minsk'));
             $table->engine = 'InnoDB';
         });
     }

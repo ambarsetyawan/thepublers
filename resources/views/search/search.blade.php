@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <title>the Publers</title>
+    <title>the Publers — поиск</title>
     @include('header.top')
 </head>
 <body>
@@ -37,4 +37,5 @@
             </ul>
         </div>
     </div>
+    @include('footer.footer')
 </div>

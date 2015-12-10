@@ -1,19 +1,18 @@
-<link rel="stylesheet" href="{{ asset("css/css.css") }}">
+<!doctype html>
+<html lang="en">
+<head>
+    <title>the Publers — регистрация</title>
+    @include('header.top')
+</head>
+<body>
 
 <div class="wrapper">
-
     @include('header.header')
-
-    <div class="errors">
-        <ul class="cols">
-            @foreach($errors->all() as $error)
-                <li><span>{{ $error }}</span></li>
-            @endforeach
-        </ul>
-    </div>
     <h3>Регистрация</h3>
     <form method="POST" action="" enctype="multipart/form-data">
-        {!! csrf_field() !!}
+        {{ csrf_field() }}
+        <input type="hidden" name="_token" value="{{ csrf_token() }}"/>
+
         <label for="user_cover_address">Обложка:
             <input type="file" name="user_cover_address">
         </label>
@@ -36,4 +35,5 @@
 
         <input type="submit" value="Сохранить">
     </form>
+    @include('footer.footer')
 </div>

@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <title>the Publers</title>
+    <title>the Publers — {{ $book_edit->book_title }} / Редактировать</title>
     @include('header.top')
 </head>
 <body>
@@ -33,12 +33,9 @@
 
         <label for="book_category">Выбрать категорию:
             <select name="book_category" id="">
-                <option value="Художественная литература">Художественная литература</option>
-                <option value="Детская литература">Детская литература</option>
-                <option value="Бизнес-литература">Бизнес-литература</option>
-                <option value="Обучение и наука">Обучение и наука</option>
-                <option value="Увлечения">Увлечения</option>
-                <option value="Компьютеры и Интернет">Компьютеры и Интернет</option>
+                @foreach($category as $content)
+                    <option value="{{ $content->slug }}">{{ $content->category_name }}</option>
+                @endforeach
             </select>
         </label>
 
@@ -48,4 +45,6 @@
 
         <input type="submit" value="Сохранить">
     </form>
+
+    @include('footer.footer')
 </div>

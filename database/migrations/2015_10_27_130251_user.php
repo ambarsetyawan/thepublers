@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Carbon\Carbon;
 
 class User extends Migration{
 
@@ -19,8 +20,8 @@ class User extends Migration{
             $table->string('user_skype')->default('');
             $table->string('user_about', 128)->default('');
             $table->string('remember_token', 128)->default('');
-            $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
-            $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestamp('created_at')->default(Carbon::now('Europe/Minsk'));
+            $table->timestamp('updated_at')->default(Carbon::now('Europe/Minsk'));
             $table->engine = 'InnoDB';
 
         });

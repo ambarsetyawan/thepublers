@@ -13,6 +13,7 @@ use Intervention\Image\ImageManagerStatic as Image;
 use Redirect;
 use Illuminate\Support\Facades\File;
 use Post;
+use Carbon\Carbon;
 
 class BookController extends Controller
 {
@@ -90,7 +91,8 @@ class BookController extends Controller
     {
         $book = BookModel::where('slug', $slug)->first();
         $book_edit = BookModel::find($book->book_id);
-        return view('book.edit', ['book_edit' => $book_edit]);
+        $category = CategoryModel::all();
+        return view('book.edit', ['book_edit' => $book_edit, 'category' => $category]);
     }
 
 
@@ -112,6 +114,7 @@ class BookController extends Controller
                     'book_year' => $request->book_year,
                     'book_category' => $request->book_category,
                     'book_text' => $request->book_text,
+                    'updated_at' => Carbon::now('Europe/Minsk'),
                 ]
             );
 

@@ -1,7 +1,12 @@
-<link rel="stylesheet" href="{{ asset("css/css.css") }}">
+<!doctype html>
+<html lang="en">
+<head>
+    <title>the Publers — редактировать пользователя</title>
+    @include('header.top')
+</head>
+<body>
 
 <div class="wrapper">
-
     @include('header.header')
     <h3>Редактировать пользователя</h3>
     <form action="/user/{{ $edit_user->user_id }}" method="POST" enctype="multipart/form-data">
@@ -21,7 +26,7 @@
         </label>
 
         <label for="user_password">Пароль:
-            <input type="password" name="user_password">
+            <input type="password" name="user_password" value="">
         </label>
 
         <label for="user_email">Email:
@@ -54,5 +59,5 @@
 
         <input type="submit" value="Сохранить">
     </form>
-
+    @include('footer.footer')
 </div>

@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <title>the Publers</title>
+    <title>the Publers — создать цитату</title>
     @include('header.top')
 </head>
 <body>
@@ -9,6 +9,7 @@
 <div class="wrapper">
     @include('header.header')
     <div class="login">
+        <a href="/quote/all">Посмотреть цитаты</a>
         <h3>Создать цитату</h3>
         <form action="" method="post" enctype="multipart/form-data">
             {{ csrf_field() }}
@@ -31,4 +32,5 @@
             </ul>
         </form>
     </div>
+    @include('footer.footer')
 </div>

@@ -1,32 +1,13 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <title>the Publers</title>
+    <title>the Publers — авторизация</title>
     @include('header.top')
 </head>
 <body>
 
 <div class="wrapper">
-    <div class="header">
-        <ul class="cols">
-            @if(Auth::check())
-                <li><a href="{{'/'}}">Главная</a></li>
-                <li><a href="{{'/book'}}">Новая книга</a></li>
-                <li><a href="{{ '/user/' . Auth::user()->user_id }}">Профиль</a></li>
-                <li><a href="{{ '/logout' }}">Выход</a></li>
-            @else
-                <li><a href="{{'/'}}">Главная</a></li>
-                <li><a href="{{'/login'}}">Вход</a></li>
-                <li><a href="{{'/user'}}">Регистрация</a></li>
-        </ul>
-    </div>
-    <div class="errors">
-        <ul class="cols">
-            @foreach($errors->all() as $error)
-                <li><span>{{ $error }}</span></li>
-            @endforeach
-        </ul>
-    </div>
+    @include('header.header')
     <div class="login">
         <h3>Авторизация</h3>
         <form action="/login" method="post" enctype="multipart/form-data">
@@ -50,5 +31,5 @@
             </ul>
         </form>
     </div>
+    @include('footer.footer')
 </div>
-@endif

@@ -23,13 +23,20 @@ class QuoteController extends Controller
     }
 
 
+    public function all()
+    {
+        $quote = QuoteModel::all();
+        return view('quote.all', ['quote' => $quote]);
+    }
+
+
     public function store(Request $request, QuoteRequest $quote)
     {
         $this->validate($request, $quote->rules());
         $quote = new QuoteModel($request->all());
         $quote->save();
 
-        return redirect()->to('/quote');
+        return redirect()->to('/quote/all');
     }
 
 

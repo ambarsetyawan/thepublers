@@ -12,6 +12,7 @@ use Intervention\Image\ImageManagerStatic as Image;
 use Redirect;
 use File;
 use Hash;
+use Carbon\Carbon;
 
 class UserController extends Controller
 {
@@ -92,8 +93,11 @@ class UserController extends Controller
                     'user_icq' => $request->user_icq,
                     'user_skype' => $request->user_skype,
                     'user_about' => $request->user_about,
+                    'updated_at' => Carbon::now('Europe/Minsk'),
                 ]
             );
+
+        return redirect()->to('/user/'.$id)->withErrors('Данные обновлены');
     }
 
 

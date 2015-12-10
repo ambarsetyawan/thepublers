@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <title>the Publers</title>
+    <title>the Publers — добавить отзыв</title>
     @include('header.top')
 </head>
 <body>
@@ -37,5 +37,6 @@
             </ul>
         </form>
     </div>
+    @include('footer.footer')
 </div>
 

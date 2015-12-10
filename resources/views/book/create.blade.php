@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <title>the Publers</title>
+    <title>the Publers — Создать книгу</title>
     @include('header.top')
 </head>
 <body>
@@ -11,7 +11,7 @@
     @include('header.header')
     <h3>Создать книгу</h3>
     <form action="{{ '/book' }}" method="POST" enctype="multipart/form-data">
-        {{ csrf_field() }}
+        <input type="hidden" name="_token" value="{{ csrf_token() }}">
         <label for="book_cover">Обложка книги:
             <input type="file" name="book_cover">
         </label>
@@ -42,4 +42,6 @@
 
         <input type="submit" name="submit" value="Добавить">
     </form>
+
+    @include('footer.footer')
 </div>

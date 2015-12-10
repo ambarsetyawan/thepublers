@@ -51,8 +51,7 @@
                     <a href="/book/{{ $book->slug }}" class="book_title">{{ $book->book_title }}</a>
                     <a href="/book/{{ $book->slug }}"><img src="/{{ $book->book_cover }}"
                                                               alt="{{ $book->book_title }}"
-                                                              title="{{ $book->book_title }}"><img
-                                src="{{ '/img/view.png' }}" alt="" class="view"></a>
+                                                              title="{{ $book->book_title }}"></a>
                 @endif
             </li>
             <li class="blank"></li>
@@ -90,7 +89,7 @@
             <tr>
                 @foreach($latest_book as $latest)
                     <td>
-                        <a href="/book/{{ $latest->book_id }}"><img src="/{{ $latest->book_cover }}" alt="{{ $latest->book_title }}"
+                        <a href="/book/{{ $latest->slug }}"><img src="/{{ $latest->book_cover }}" alt="{{ $latest->book_title }}"
                                  title="{{ $latest->book_title }}" width="200"
                                  height="auto"><br>{{ $latest->book_title }}
                         </a>
@@ -99,4 +98,5 @@
             </tr>
         </table>
     </div>
+    @include('footer.footer')
 </div>

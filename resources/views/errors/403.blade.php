@@ -1,12 +1,12 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <title>503</title>
+    <title>403</title>
     @include('header.top')
 </head>
 <body>
 <div class="error_content">
-    <a href="/"><span class="error_page">503</span></a>
+    <a href="/"><span class="error_page">403</span></a>
 </div>
 </body>
 </html>
